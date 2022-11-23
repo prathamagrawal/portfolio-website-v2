@@ -41,6 +41,10 @@ module.exports = {
       name: 'Contact',
       url: '/#contact',
     },
+    {
+      name: 'github',
+      url: 'https://www.github.com',
+    },
   ],
 
   colors: {
