@@ -1,7 +1,7 @@
 ---
 date: '2'
 title: 'Sportlight'
-# cover: './demo.png'
+cover: './demo.png'
 github: 'https://www.github.com/prathamagrawal/Sportlight'
 external: 'https://www.knowunknowns.co/'
 tech:
