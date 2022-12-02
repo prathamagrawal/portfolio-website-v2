@@ -135,10 +135,11 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Brittany and I enjoy creating things that live on the internet. My
-              interest in web development started back in 2012 when I decided to try editing custom
-              Tumblr themes — turns out hacking together a custom reblog button taught me a lot
-              about HTML &amp; CSS!
+              Hi, My Name's Pratham. I am an aspiring Data Scientist and Machine Learning engineer.
+              I tend to learn more about Machine learning, AI and Data Science. I have been working
+              on ML projects for some time now. I utilise my time learning and putting things to a
+              good use. I like to read introspection books, sketch, and workout. I love to explore
+              new possibilities and opportunities.
             </p>
 
             <p>
