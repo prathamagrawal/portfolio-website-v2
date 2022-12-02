@@ -64,13 +64,8 @@ const Hero = () => {
   const four = (
     <>
       <p>
-        I’m a software engineer specializing in building (and occasionally designing) exceptional
-        digital experiences. Currently, I’m focused on building accessible, human-centered products
-        at{' '}
-        <a href="https://upstatement.com/" target="_blank" rel="noreferrer">
-          Upstatement
-        </a>
-        .
+        'You have to dream before your dreams can come true.' ~ Dr. APJ Abdul Kalam. I overhead this
+        line, which keeps me hustling. .
       </p>
     </>
   );
