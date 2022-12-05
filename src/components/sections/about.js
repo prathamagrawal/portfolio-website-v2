@@ -125,7 +125,16 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['JavaScript (ES6+)', 'TypeScript', 'React', 'Eleventy', 'Node.js', 'WordPress'];
+  const skills = [
+    'Python',
+    'Tensorflow',
+    'R Programming',
+    'Keras',
+    'Flask',
+    'OpenCV',
+    'Yolov',
+    'MySQL',
+  ];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -150,18 +159,16 @@ const About = () => {
                 an Automation start-up
               </a>
               , <a href="https://www.iet-vit.tech/">a student-based Chapter</a>, and{' '}
-              <a href="https://www.littlelove.org.in/">a student-run NGO</a>. My main focus these
-              days is building accessible, inclusive products and digital experiences at{' '}
-              <a href="https://upstatement.com/">Upstatement</a> for a variety of clients.
+              <a href="https://www.littlelove.org.in/">a student-run NGO</a>. I have been focusing
+              my time these days on building pipelines and research on optimally solving the boolean
+              expression tree.
             </p>
 
             <p>
-              I also recently{' '}
-              <a href="https://www.newline.co/courses/build-a-spotify-connected-app">
-                launched a course
-              </a>{' '}
-              that covers everything you need to build a web app with the Spotify API using Node
-              &amp; React.
+              I also recently worked with my fellows to make a project which would help extract
+              highlights of sports videos. My main attention was directed towards building the NLP
+              model to extract the information. Check it out:{' '}
+              <a href="https://www.knowunknowns.co/">Sportlight</a>{' '}
             </p>
 
             <p>Here are a few technologies I’ve been working with recently:</p>
