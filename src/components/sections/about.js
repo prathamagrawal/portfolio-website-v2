@@ -135,22 +135,24 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hi, My Name's Pratham. I am an aspiring Data Scientist and Machine Learning engineer.
-              I tend to learn more about Machine learning, AI and Data Science. I have been working
-              on ML projects for some time now. I utilise my time learning and putting things to a
-              good use. I like to read introspection books, sketch, and workout. I love to explore
-              new possibilities and opportunities.
+              Hi, My name's Pratham. I am a Third year Computer Science Student in India. I am an
+              aspiring Data Scientist and Machine Learning Engineer. I have been learning and
+              building machine learning projects for about 2 years now. I utilise my team learning
+              and putting things to a good use. I like to read introspection books, sketch, and
+              workout.
             </p>
 
             <p>
-              Fast-forward to today, and I’ve had the privilege of working at{' '}
-              <a href="https://us.mullenlowe.com/">an advertising agency</a>,{' '}
-              <a href="https://starry.com/">a start-up</a>,{' '}
-              <a href="https://www.apple.com/">a huge corporation</a>, and{' '}
-              <a href="https://scout.camd.northeastern.edu/">a student-led design studio</a>. My
-              main focus these days is building accessible, inclusive products and digital
-              experiences at <a href="https://upstatement.com/">Upstatement</a> for a variety of
-              clients.
+              One work to describe me would be “Young Opportunist”. Over the years I have learnt to
+              explore every coming opportunity that comes under the way. Fast forward to today, I
+              have had the privilege of working at{' '}
+              <a href="https://www.linkedin.com/company/hacklab-solutions/mycompany/">
+                an Automation start-up
+              </a>
+              , <a href="https://www.iet-vit.tech/">a student-based Chapter</a>, and{' '}
+              <a href="https://www.littlelove.org.in/">a student-run NGO</a>. My main focus these
+              days is building accessible, inclusive products and digital experiences at{' '}
+              <a href="https://upstatement.com/">Upstatement</a> for a variety of clients.
             </p>
 
             <p>
