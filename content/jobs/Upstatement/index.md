@@ -1,12 +1,11 @@
 ---
-date: '2018-05-14'
-title: 'Engineer'
-company: 'Upstatement'
-location: 'Boston, MA'
-range: 'May 2018 - Present'
-url: 'https://www.upstatement.com/'
+date: '2022-07-19'
+title: 'Aritificial Intelligence Intern'
+company: 'Hacklabs Solutions'
+location: 'Remote, India'
+range: 'August 2022 - November 2022'
+url: 'https://www.hacklab.solutions/'
 ---
 
-- Write modern, performant, maintainable code for a diverse array of client and internal projects
-- Work with a variety of different languages, platforms, frameworks, and content management systems such as JavaScript, TypeScript, Gatsby, React, Craft, WordPress, Prismic, and Netlify
-- Communicate with multi-disciplinary teams of engineers, designers, producers, and clients on a daily basis
+- Assisted developmet of docker container for core image segmentation model from yolov5 to yolov7.
+- Worked on leakage detection algorithm based on image segmentation and image processing.
