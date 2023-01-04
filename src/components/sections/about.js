@@ -152,7 +152,7 @@ const About = () => {
             </p>
 
             <p>
-              One work to describe me would be “Young Opportunist”. Over the years I have learnt to
+              I choose to describe as an “Young Opportunist”. Over the years I have learnt to
               explore every coming opportunity that comes under the way. Fast forward to today, I
               have had the privilege of working at{' '}
               <a href="https://www.linkedin.com/company/hacklab-solutions/mycompany/">
