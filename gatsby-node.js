@@ -6,9 +6,19 @@
 
 const path = require('path');
 const _ = require('lodash');
+//const redirects = require('./redirects.json');
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
+
+  // redirects.forEach(redirect => {
+  //   createRedirect({
+  //     fromPath: redirect.fromPath,
+  //     toPath: redirect.toPath,
+  //     redirectInBrowser: true,
+  //   });
+  // });
+
   const postTemplate = path.resolve(`src/templates/post.js`);
   const tagTemplate = path.resolve('src/templates/tag.js');
 

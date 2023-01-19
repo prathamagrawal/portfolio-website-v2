@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/gh", "destination": "https://github.com/prathamagrawal", "permanent": false }
+  ]
+}

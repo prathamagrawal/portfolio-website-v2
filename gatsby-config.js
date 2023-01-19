@@ -3,8 +3,7 @@ const config = require('./src/config');
 module.exports = {
   siteMetadata: {
     title: 'Pratham Agrawal',
-    description:
-      'Brittany Chiang is a undergraduate student studying Computer Science and has a deep love for Data Science.',
+    description: 'Pratham Agrawal',
     siteUrl: 'https://www.prathamagrawal.com', // No trailing slash allowed!
     image: '/og.png', // Path to your image you placed in the 'static' folder
     twitterUsername: '@fearsomejockey',
