@@ -1,5 +1,53 @@
 {
   "redirects": [
-    { "source": "/gh", "destination": "https://github.com/prathamagrawal", "permanent": false }
+    { "source": "/resume", "destination": "/resume.pdf", "permanent": false },
+    { "source": "/aihealthcare", "destination": "/paper1.pdf", "permanent": false },
+    { "source": "/googlecloud", "destination": "/GoogleCloudCert.pdf", "permanent": false },
+    { "source": "/ml_cvd", "destination": "/ML_CVD_IEEE.pdf", "permanent": false },
+    { "source": "/hacklab_cert", "destination": "/Hacklab_cert.pdf", "permanent": false },
+    { "source": "/github", "destination": "https://github.com/prathamagrawal", "permanent": false },
+    {
+      "source": "/linkedin",
+      "destination": "https://www.linkedin.com/in/pratham-manish-agrawal",
+      "permanent": false
+    },
+    {
+      "source": "/instagram",
+      "destination": "https://www.instagram.com/prathammanishagrawal",
+      "permanent": false
+    },
+    {
+      "source": "/twitter",
+      "destination": "https://www.twitter.com/fearsomejockey",
+      "permanent": false
+    },
+    {
+      "source": "/kaggle",
+      "destination": "https://www.kaggle.com/fearsomejokcey",
+      "permanent": false
+    },
+    {
+      "source": "/leetcode",
+      "destination": "https://leetcode.com/prathamagrawal",
+      "permanent": false
+    },
+    {
+      "source": "/codechef",
+      "destination": "https://codechef.com/users/fearsomejockey",
+      "permanent": false
+    },
+    { "source": "/gh", "destination": "https://github.com/prathamagrawal", "permanent": false },
+    {
+      "source": "/pypi",
+      "destination": "https://pypi.org/user/fearsomejockey",
+      "permanent": false
+    },
+    { "source": "/mail", "destination": "mailto:prathamagrawal@gmail.com", "permanent": false },
+    { "source": "/phone", "destination": "tel:+918269067007", "permanent": false },
+    {
+      "source": "/medium",
+      "destination": "https://medium.com/@prathammanishagrawal",
+      "permanent": false
+    }
   ]
 }
