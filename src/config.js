@@ -20,7 +20,7 @@ module.exports = {
     },
     {
       name: 'Kaggle',
-      url: 'https://www.kaggle.com/fearsomjockey',
+      url: 'https://www.kaggle.com/fearsomejockey',
     },
   ],
 
