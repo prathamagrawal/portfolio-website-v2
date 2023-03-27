@@ -42,7 +42,7 @@
       "destination": "https://pypi.org/user/fearsomejockey",
       "permanent": false
     },
-    { "source": "/mail", "destination": "mailto:prathamagrawal@gmail.com", "permanent": false },
+    { "source": "/mail", "destination": "mailto:prathamagrawal1205@gmail.com", "permanent": false },
     { "source": "/phone", "destination": "tel:+918269067007", "permanent": false },
     {
       "source": "/medium",
