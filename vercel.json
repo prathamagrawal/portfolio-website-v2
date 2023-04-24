@@ -4,7 +4,7 @@
     { "source": "/aihealthcare", "destination": "/paper1.pdf", "permanent": false },
     { "source": "/gcp", "destination": "/GoogleCloudCert.pdf", "permanent": false },
     { "source": "/ml_cvd", "destination": "/ML_CVD_IEEE.pdf", "permanent": false },
-    { "source": "/hacklab_cert", "destination": "/Hacklab_cert.pdf", "permanent": false },
+    { "source": "/hacklab", "destination": "/Hacklab_cert.pdf", "permanent": false },
     { "source": "/github", "destination": "https://github.com/prathamagrawal", "permanent": false },
     {
       "source": "/linkedin",
