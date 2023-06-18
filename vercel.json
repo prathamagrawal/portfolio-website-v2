@@ -7,6 +7,7 @@
     { "source": "/hacklab", "destination": "/Hacklab_cert.pdf", "permanent": false },
     { "source": "/ietvit", "destination": "/IETCertificate.pdf", "permanent": false },
     { "source": "/github", "destination": "https://github.com/prathamagrawal", "permanent": false },
+    { "source": "/meet", "destination": "https://meet.google.com/hva-ofdd-fdy", "permanent": false },
     {
       "source": "/linkedin",
       "destination": "https://www.linkedin.com/in/pratham-manish-agrawal",
