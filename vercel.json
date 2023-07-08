@@ -1,6 +1,6 @@
 {
   "redirects": [
-    { "source": "/resume", "destination": "/resume.pdf", "permanent": false },
+    { "source": "/cv", "destination": "/resume.pdf", "permanent": false },
     { "source": "/aihealthcare", "destination": "/paper1.pdf", "permanent": false },
     { "source": "/gcp", "destination": "/GoogleCloudCert.pdf", "permanent": false },
     { "source": "/ml_cvd", "destination": "/ML_CVD_IEEE.pdf", "permanent": false },
