@@ -35,6 +35,11 @@
       "permanent": false
     },
     {
+      "source": "/notionresume",
+      "destination": "https://mountain-order-f91.notion.site/Pratham-Agrawal-f31bde6d9b0c44b98b269b30feb45a19",
+      "permanent": false
+    },
+    {
       "source": "/codechef",
       "destination": "https://codechef.com/users/fearsomejockey",
       "permanent": false
@@ -54,3 +59,5 @@
     }
   ]
 }
+
+
