@@ -3,7 +3,7 @@
     { "source": "/cv", "destination": "/resume.pdf", "permanent": false },
     { "source": "/resume", "destination": "/resume.pdf", "permanent": false },
     { "source": "/aihealthcare", "destination": "/paper1.pdf", "permanent": false },
-    { "source": "/samsungprism", "destination": "/SamsungPrism.pdf", "permanent": false },
+    { "source": "/samsungprism", "destination": "/SasmungPrism.pdf", "permanent": false },
     { "source": "/gcp", "destination": "/GoogleCloudCert.pdf", "permanent": false },
     { "source": "/ml_cvd", "destination": "/ML_CVD_IEEE.pdf", "permanent": false },
     { "source": "/hacklab", "destination": "/Hacklab_cert.pdf", "permanent": false },

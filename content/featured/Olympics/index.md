@@ -1,5 +1,5 @@
 ---
-date: '3'
+date: '4'
 title: 'Olympics Data Visulization'
 cover: './photo.png'
 external: 'www.github.com/prathamagrawal'
