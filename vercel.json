@@ -2,10 +2,10 @@
   "redirects": [
     { "source": "/cv", "destination": "/resume.pdf", "permanent": false },
     { "source": "/resume", "destination": "/resume.pdf", "permanent": false },
-    { "source": "/aihealthcare", "destination": "/paper1.pdf", "permanent": false },
+    { "source": "/journal", "destination": "/paper1.pdf", "permanent": false },
     { "source": "/samsungprism", "destination": "/SasmungPrism.pdf", "permanent": false },
     { "source": "/gcp", "destination": "/GoogleCloudCert.pdf", "permanent": false },
-    { "source": "/ml_cvd", "destination": "/ML_CVD_IEEE.pdf", "permanent": false },
+    { "source": "/mlcvd", "destination": "https://archive.org/download/Prediction-of-Cardiovascular-Risks/ML_CVD_IEEE.pdf", "permanent": false },
     { "source": "/hacklab", "destination": "/Hacklab_cert.pdf", "permanent": false },
     { "source": "/ietvit", "destination": "/IETCertificate.pdf", "permanent": false },
     { "source": "/github", "destination": "https://github.com/prathamagrawal", "permanent": false },
