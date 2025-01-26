@@ -64,9 +64,10 @@ const Contact = () => {
         to you.
       </p>
 
-      <a className="email-link" href={`mailto:${email}`}>
+      <a className="email-link" href="https://www.linkedin.com/in/pratham-manish-agrawal/">
         Say Hello
       </a>
+
     </StyledContactSection>
   );
 };

@@ -21,7 +21,7 @@ const StyledAboutSection = styled.section`
 const StyledText = styled.div`
   ul.skills-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 200px));
+    grid-template-columns: repeat(3, minmax(140px, 200px));
     grid-gap: 0 10px;
     padding: 0;
     margin: 20px 0 0 0;
@@ -125,15 +125,28 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
+
+//   Programming Languages & Frameworks: Python, C, C++, SQL, Git
+// Messaging and Streaming: RabbitMQ, Kafka, NATS
+// Cloud Computing Tools: Docker, AWS, Kubernetes, Github
+// Data science: Apache Airflow, Spark, Astro, Hadoop, Tableau
+// Database Management: SQL (e.g., PostgreSQL, Oracle), NoSQL (e.g. MongoDB), Database Design, Data Warehousing
   const skills = [
     'Python',
-    'Tensorflow',
-    'R Programming',
-    'Keras',
-    'Flask',
-    'OpenCV',
-    'Yolov',
-    'MySQL',
+    'C/C++',
+    'SQL',
+    'Git',
+    'RabbitMQ',
+    'Kafka',
+    'Apache Airflow',
+    'Spark',
+    'Hadoop',
+    'Tableau',
+    'PostgreSql',
+    'Oracle',
+    'MongoDB',
+    'Database Warehousing',
+    'Database Design'
   ];
 
   return (
@@ -143,35 +156,11 @@ const About = () => {
       <div className="inner">
         <StyledText>
           <div>
-            <p>
-              Hi, My name's Pratham. I am a Third year Computer Science Student in India. I am an
-              aspiring Data Scientist and Machine Learning Engineer. I have been learning and
-              building machine learning projects for about 2 years now. I utilise my team learning
-              and putting things to a good use. I like to read introspection books, sketch, and
-              workout.
-            </p>
-
-            <p>
-              I choose to describe as an “Young Opportunist”. Over the years I have learnt to
-              explore every coming opportunity that comes under the way. Fast forward to today, I
-              have had the privilege of working at{' '}
-              <a href="https://www.linkedin.com/company/hacklab-solutions/mycompany/">
-                an Automation start-up
-              </a>
-              , <a href="https://www.iet-vit.tech/">a student-based Chapter</a>, and{' '}
-              <a href="https://www.littlelove.org.in/">a student-run NGO</a>. I have been focusing
-              my time these days on building pipelines and research on optimally solving the boolean
-              expression tree.
-            </p>
-
-            <p>
-              I also recently worked with my fellows to make a project which would help extract
-              highlights of sports videos. My main attention was directed towards building the NLP
-              model to extract the information. Check it out:{' '}
-              <a href="https://www.knowunknowns.co/">Sportlight</a>{' '}
-            </p>
-
-            <p>Here are a few technologies I’ve been working with recently:</p>
+          <p><b>"I'm a software developer who turns data into stories. 📊✨</b>"</p>
+          <p>I craft scalable, efficient systems that transform raw information into actionable insights. From optimizing query performance for real-time dashboards to building robust data pipelines that handle petabytes of data, I love the challenge of turning complex problems into elegant solutions.</p>
+          <p>My toolkit includes Python, RabbitMQ, Docker, and PostgreSQL, and I'm always eager to learn new technologies. Whether I'm architecting a resilient archival service or developing an innovative clustering algorithm, I strive for both performance and user-friendliness.</p>
+          <p>Beyond coding, I'm a strong believer in collaboration and clear communication. I enjoy working with teams to simplify processes, ensure data integrity, and ultimately empower businesses with smarter, faster tools.</p>
+          <p>Let's build something awesome together – trust me, it'll be a wild ride! 🚀"</p>
           </div>
 
           <ul className="skills-list">
