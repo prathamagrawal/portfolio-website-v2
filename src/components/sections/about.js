@@ -125,12 +125,6 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-
-//   Programming Languages & Frameworks: Python, C, C++, SQL, Git
-// Messaging and Streaming: RabbitMQ, Kafka, NATS
-// Cloud Computing Tools: Docker, AWS, Kubernetes, Github
-// Data science: Apache Airflow, Spark, Astro, Hadoop, Tableau
-// Database Management: SQL (e.g., PostgreSQL, Oracle), NoSQL (e.g. MongoDB), Database Design, Data Warehousing
   const skills = [
     'Python',
     'C/C++',
@@ -156,11 +150,11 @@ const About = () => {
       <div className="inner">
         <StyledText>
           <div>
-          <p><b>"I'm a software developer who turns data into stories. 📊✨</b>"</p>
+          <p><b>I'm a software developer who turns data into stories. 📊✨</b></p>
           <p>I craft scalable, efficient systems that transform raw information into actionable insights. From optimizing query performance for real-time dashboards to building robust data pipelines that handle petabytes of data, I love the challenge of turning complex problems into elegant solutions.</p>
           <p>My toolkit includes Python, RabbitMQ, Docker, and PostgreSQL, and I'm always eager to learn new technologies. Whether I'm architecting a resilient archival service or developing an innovative clustering algorithm, I strive for both performance and user-friendliness.</p>
           <p>Beyond coding, I'm a strong believer in collaboration and clear communication. I enjoy working with teams to simplify processes, ensure data integrity, and ultimately empower businesses with smarter, faster tools.</p>
-          <p>Let's build something awesome together – trust me, it'll be a wild ride! 🚀"</p>
+          <p>Let&apos;s build something awesome together – trust me, it&apos;ll be a wild ride! 🚀</p>
           </div>
 
           <ul className="skills-list">
