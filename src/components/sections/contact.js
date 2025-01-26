@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import sr from '@utils/sr';
+import { srConfig, email } from '@config';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledContactSection = styled.section`
