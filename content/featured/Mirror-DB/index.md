@@ -1,5 +1,5 @@
 ---
-date: '2'
+date: '1'
 title: 'Mirror-DB'
 cover: './mirror-db-architecture.jpeg'
 github: 'https://github.com/prathamagrawal/mirror-db'
