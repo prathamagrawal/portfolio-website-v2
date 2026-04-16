@@ -1,5 +1,5 @@
 ---
-date: '1'
+date: '2'
 title: 'LogHive'
 cover: './loghive.png'
 github: 'https://github.com/prathamagrawal/loghive'
@@ -12,4 +12,7 @@ tech:
   - Docker
 ---
 
-A robust, scalable Python logging library that enables distributed log collection with advanced connection management, automatic reconnection, and thread-safe logging capabilities. 🌟
+Built a log archival pipeline for high-volume systems with compression, indexed retrieval, and controlled back-pressure handling.
+
+- Benchmarked the system for high-throughput ingestion while maintaining 99.99% write durability on PostgreSQL.
+- Added adaptive RabbitMQ consumer scaling and Redis-based producer rate limiting to prevent queue saturation during traffic spikes.

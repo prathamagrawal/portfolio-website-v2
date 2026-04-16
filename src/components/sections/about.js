@@ -127,20 +127,20 @@ const About = () => {
 
   const skills = [
     'Python',
-    'C/C++',
+    'C++ / Java',
     'SQL',
-    'Git',
-    'RabbitMQ',
-    'Kafka',
-    'Apache Airflow',
-    'Spark',
-    'Hadoop',
-    'Tableau',
-    'PostgreSql',
-    'Oracle',
+    'PostgreSQL',
     'MongoDB',
-    'Database Warehousing',
-    'Database Design'
+    'Apache Kafka',
+    'RabbitMQ / NATS',
+    'Apache Airflow',
+    'Apache Spark',
+    'Docker',
+    'Kubernetes',
+    'AWS (S3, EC2)',
+    'Prometheus / Grafana',
+    'Anthropic / OpenAI API',
+    'GitHub Actions',
   ];
 
   return (
@@ -150,11 +150,27 @@ const About = () => {
       <div className="inner">
         <StyledText>
           <div>
-          <p><b>I'm a software developer who turns data into stories. 📊✨</b></p>
-          <p>I craft scalable, efficient systems that transform raw information into actionable insights. From optimizing query performance for real-time dashboards to building robust data pipelines that handle petabytes of data, I love the challenge of turning complex problems into elegant solutions.</p>
-          <p>My toolkit includes Python, RabbitMQ, Docker, and PostgreSQL, and I'm always eager to learn new technologies. Whether I'm architecting a resilient archival service or developing an innovative clustering algorithm, I strive for both performance and user-friendliness.</p>
-          <p>Beyond coding, I'm a strong believer in collaboration and clear communication. I enjoy working with teams to simplify processes, ensure data integrity, and ultimately empower businesses with smarter, faster tools.</p>
-          <p>Let&apos;s build something awesome together – trust me, it&apos;ll be a wild ride! 🚀</p>
+            <p>
+              <b>Software Engineer building systems that make data fast, reliable, and useful. 📊🚀</b>
+            </p>
+            <p>
+              I specialise in backend infrastructure and data engineering — designing high-throughput
+              pipelines, multi-tenant analytics platforms, and LLM-powered workflow automation. At
+              Affinsys AI, I&apos;ve shipped everything from an NLQ-to-SQL analytics engine that cut
+              dashboard creation time by 90%, to a distributed archival service spanning 10+ microservices.
+            </p>
+            <p>
+              I&apos;m drawn to problems at the intersection of performance and reliability — whether
+              that&apos;s shaving hundreds of milliseconds off API response times, building sub-60s
+              failover on Kubernetes clusters, or designing event-driven warehouses that ingest at
+              sub-second latency. Clean architecture, observable systems, and well-documented code
+              matter as much to me as raw throughput.
+            </p>
+            <p>
+              Outside of work, I enjoy exploring open-source infrastructure tooling and occasionally
+              compete on LeetCode and Kaggle. Always up for a good engineering discussion — let&apos;s
+              build something that scales. ⚡
+            </p>
           </div>
 
           <ul className="skills-list">

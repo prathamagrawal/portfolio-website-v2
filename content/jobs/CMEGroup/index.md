@@ -1,12 +1,11 @@
 ---
 date: '2023-05-15'
-title: 'Intern in Quant Risk Team'
+title: 'SDE Intern'
 company: 'CME Group'
 location: 'Bangalore & Remote, India'
-range: 'August 2022 - November 2022'
+range: 'May 2023 - November 2023'
 url: 'http://cmegroup.com/'
 ---
 
-- Optimized and enhanced algorithms, improving performance by 30% and reducing computational overhead.
-- Designed and implemented advanced tools for data extraction and processing, achieving a 40% reduction in latency and enhancing overall system efficiency
-- Successfully resolved formatting issues during the transition from Outlook to Gmail email service, resulting in improved visual aesthetics and enhanced user experience.
+- Re-engineered report generation and scheduled email delivery pipelines for a high-frequency trading data platform, improving throughput by 30% through refactoring legacy batch processing logic.
+- Built internal data extraction and transformation tooling that reduced pipeline latency by 40%, enabling faster downstream reporting for trading operations teams.
