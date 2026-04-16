@@ -1,7 +1,6 @@
 ---
-date: '6'
+date: '2023-05-12'
 title: 'Olympics Data Visulization'
-cover: './photo.png'
 external: 'www.github.com/prathamagrawal'
 cta: 'www.github.com/prathamagrawal'
 # kaggle: 'www.kaggle.com/fearsomejockey'
