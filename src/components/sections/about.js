@@ -131,7 +131,7 @@ const About = () => {
     'SQL',
     'PostgreSQL',
     'MongoDB',
-    'Apache Kafka',
+    'Apache Airflow',
     'RabbitMQ / NATS',
     'Apache Airflow',
     'Apache Spark',
