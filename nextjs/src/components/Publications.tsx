@@ -1,53 +1,77 @@
 import SectionLabel from "./SectionLabel";
 
-const publications = [
+const PUBS = [
   {
     title: "Artificial Intelligence at Healthcare Industry",
-    external: "https://www.researchgate.net/publication/348633701_ARTIFICIAL_INTELLIGENCE_AT_HEALTHCARE_INDUSTRY",
     year: "2020",
-    desc: "Analysis of AI-based technology in the medical sector — comparing past, present, and future applications. Published on ResearchGate."
+    external:
+      "https://www.researchgate.net/publication/348633701_ARTIFICIAL_INTELLIGENCE_AT_HEALTHCARE_INDUSTRY",
+    desc: "Analysis of AI-based technology in the medical sector — comparing past, present, and future applications across diagnostics, drug discovery, and patient monitoring.",
   },
   {
     title: "Computational Approaches for Prediction of Cardiovascular Risks",
     year: "2022",
-    desc: "Two-part research: (a) cardiovascular risk prediction using ML/neural networks; (b) health classification from fitness tracker data via API feed."
+    external: undefined,
+    desc: "Two-part research: (a) cardiovascular risk prediction using ML and neural networks; (b) health classification from fitness tracker data via API feed.",
   },
   {
     title: "The Quest for a Martian Life",
-    external: "https://medium.com/iet-vit/the-quest-for-a-martian-life-666efaf94d23",
     year: "2021",
-    desc: "Comparative analysis of perspectives on Mars terraforming — whether it should be pursued or whether focus should remain on Earth."
-  }
+    external:
+      "https://medium.com/iet-vit/the-quest-for-a-martian-life-666efaf94d23",
+    desc: "Comparative analysis of perspectives on Mars terraforming — whether it should be pursued or whether focus should remain on preserving Earth.",
+  },
 ];
 
 export default function Publications() {
   return (
     <SectionLabel label="publications">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {publications.map((pub, index) => (
-          <div 
-            key={index} 
-            className="flex flex-col relative bg-surface border border-border rounded p-5 hover:border-accent transition-colors duration-150"
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {PUBS.map((p) => (
+          <div
+            key={p.title}
+            className="card flex flex-col p-5 gap-3 rounded"
           >
-            <div className="absolute top-5 right-5 font-mono text-[11px] text-secondary">
-              {pub.year}
-            </div>
-            
-            <h3 className="font-sans text-[15px] font-bold text-primary pr-10">
-              {pub.title}
-            </h3>
-            
-            <p className="font-sans text-[13px] text-secondary mt-2 leading-relaxed">
-              {pub.desc}
-            </p>
-            
-            {pub.external && (
-              <div className="flex flex-row gap-3 mt-auto pt-4">
-                <a href={pub.external} target="_blank" rel="noopener noreferrer" className="font-mono text-[11px] text-secondary hover:text-accent transition-colors flex items-center gap-1">
-                  Read ↗
+            {/* Year badge + link */}
+            <div className="flex items-start justify-between gap-2">
+              <span className="font-mono text-[11px] text-muted">{p.year}</span>
+              {p.external && (
+                <a
+                  href={p.external}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${p.title} — read publication`}
+                  className="text-muted hover:text-accent transition-colors duration-120 shrink-0"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
                 </a>
-              </div>
-            )}
+              )}
+            </div>
+
+            {/* Title */}
+            <h3 className="font-sans text-[14px] font-semibold text-primary leading-snug">
+              {p.external ? (
+                <a
+                  href={p.external}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors duration-120"
+                >
+                  {p.title}
+                </a>
+              ) : (
+                p.title
+              )}
+            </h3>
+
+            {/* Description */}
+            <p className="font-sans text-[13px] text-secondary leading-[1.75] flex-1">
+              {p.desc}
+            </p>
           </div>
         ))}
       </div>

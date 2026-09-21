@@ -1,152 +1,216 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-const metrics = [
-  { value: "sub-60s", label: "failover time (Mirror-DB)" },
-  { value: "sub-1s", label: "ingestion latency (Eventlogger)" },
-  { value: "90%", label: "dashboard creation time cut" },
-  { value: "40%", label: "database load reduction" },
-  { value: "15 hrs/wk", label: "reporting effort saved" },
-  { value: "10+", label: "services integrated" },
+const METRICS = [
+  { value: "sub-60s",    label: "failover time"          },
+  { value: "sub-1s",     label: "ingestion latency"      },
+  { value: "90%",        label: "dashboard time cut"     },
+  { value: "40%",        label: "DB load reduction"      },
+  { value: "15 hrs/wk",  label: "reporting effort saved" },
+  { value: "10+",        label: "services integrated"    },
 ];
 
-export default function Hero() {
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const [mounted, setMounted] = useState(false);
-  
-  const [typedValues, setTypedValues] = useState<string[]>(metrics.map(() => ""));
-  const [visibleRows, setVisibleRows] = useState<boolean[]>(metrics.map(() => false));
-  const [showCursor, setShowCursor] = useState(false);
+function useTypewriterSequence(
+  items: { value: string }[],
+  prefersReducedMotion: boolean,
+) {
+  const [typed, setTyped]   = useState<string[]>(items.map(() => ""));
+  const [visible, setVisible] = useState<boolean[]>(items.map(() => false));
+  const [cursor, setCursor] = useState(false);
+  const [done, setDone]     = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-    
     if (prefersReducedMotion) {
-      setTypedValues(metrics.map(m => m.value));
-      setVisibleRows(metrics.map(() => true));
-      setShowCursor(false);
+      setTyped(items.map((m) => m.value));
+      setVisible(items.map(() => true));
+      setDone(true);
       return;
     }
 
-    let timeoutIds: NodeJS.Timeout[] = [];
-    
-    const t1 = setTimeout(() => {
-      setShowCursor(true);
-      
-      const t2 = setTimeout(() => {
-        setShowCursor(false);
-        
-        metrics.forEach((metric, rowIndex) => {
-          const staggerDelay = rowIndex * 80;
-          
-          const t3 = setTimeout(() => {
-            setVisibleRows(prev => {
-              const next = [...prev];
-              next[rowIndex] = true;
-              return next;
-            });
-            
-            const chars = metric.value.split("");
-            chars.forEach((char, charIndex) => {
-              const t4 = setTimeout(() => {
-                setTypedValues(prev => {
-                  const next = [...prev];
-                  next[rowIndex] = metric.value.substring(0, charIndex + 1);
-                  return next;
-                });
-              }, charIndex * 30);
-              timeoutIds.push(t4);
-            });
-          }, staggerDelay);
-          timeoutIds.push(t3);
-        });
-      }, 400);
-      timeoutIds.push(t2);
-    }, 300);
-    timeoutIds.push(t1);
+    const ids: ReturnType<typeof setTimeout>[] = [];
 
-    return () => {
-      timeoutIds.forEach(clearTimeout);
-    };
-  }, [mounted, prefersReducedMotion]);
+    // 300ms initial pause → cursor blink for 500ms → then type rows
+    const t0 = setTimeout(() => {
+      setCursor(true);
+      const t1 = setTimeout(() => {
+        setCursor(false);
+
+        items.forEach((item, ri) => {
+          const rowDelay = ri * 90;
+
+          const tRow = setTimeout(() => {
+            setVisible((prev) => {
+              const n = [...prev]; n[ri] = true; return n;
+            });
+            const chars = item.value.split("");
+            chars.forEach((_, ci) => {
+              const tChar = setTimeout(() => {
+                setTyped((prev) => {
+                  const n = [...prev];
+                  n[ri] = item.value.slice(0, ci + 1);
+                  return n;
+                });
+                if (ri === items.length - 1 && ci === chars.length - 1) {
+                  setDone(true);
+                }
+              }, ci * 28);
+              ids.push(tChar);
+            });
+          }, rowDelay);
+          ids.push(tRow);
+        });
+      }, 500);
+      ids.push(t1);
+    }, 300);
+    ids.push(t0);
+
+    return () => ids.forEach(clearTimeout);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prefersReducedMotion]);
+
+  return { typed, visible, cursor, done };
+}
+
+export default function Hero() {
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const { typed, visible, cursor, done } = useTypewriterSequence(METRICS, prefersReducedMotion);
+  const _ = done; // used downstream if needed
 
   return (
-    <section className="pt-32 pb-16 min-h-[90vh] flex flex-col justify-center">
-      <div className="flex flex-col md:flex-row md:items-center gap-12 md:gap-8">
-        
-        {/* Left Column */}
-        <div className="w-full md:w-[55%] flex flex-col items-start">
-          <p className="font-mono text-[13px] text-secondary mb-4">
+    <section className="min-h-[92vh] flex flex-col justify-center pt-24 pb-16">
+      <div className="flex flex-col-reverse md:flex-row md:items-center gap-10 md:gap-8 lg:gap-16">
+
+        {/* ── Left ─────────────────────────────────────── */}
+        <div className="flex flex-col items-start md:w-[55%]">
+
+          {/* Eyebrow */}
+          <p className="font-mono text-[12px] text-secondary tracking-[0.12em] mb-5">
             pratham agrawal
           </p>
-          <h1 className="text-[clamp(40px,5vw,72px)] font-bold text-primary leading-tight">
-            Backend &<br />
+
+          {/* Headline */}
+          <h1
+            className="
+              font-sans font-bold text-primary leading-[1.1] tracking-tight
+              text-[clamp(2.4rem,6vw,4.2rem)]
+            "
+          >
+            Backend &amp;<br />
             Data Infrastructure<br />
             Engineer.
           </h1>
-          <p className="font-sans text-base text-secondary max-w-[480px] mt-6 leading-relaxed">
-            Building high-throughput pipelines, distributed systems,
-            and LLM-powered automation. Currently at Affinsys AI.
+
+          {/* Sub */}
+          <p className="font-sans text-[15px] md:text-base text-secondary mt-6 max-w-[480px] leading-[1.75]">
+            Building high-throughput pipelines, distributed systems, and
+            LLM-powered automation.{" "}
+            <span className="text-primary/70">Currently at Affinsys AI.</span>
           </p>
-          
-          <div className="flex flex-row items-center gap-6 mt-8">
-            <a href="#projects" className="text-[15px] font-sans text-accent hover:text-accent/80 transition-colors">
-              → View my work
+
+          {/* CTA row */}
+          <div className="flex items-center gap-8 mt-10">
+            <a
+              href="#projects"
+              className="
+                font-sans text-[14px] font-medium text-accent
+                flex items-center gap-1.5 group
+                hover:text-accent-hover transition-colors duration-120
+              "
+            >
+              <span
+                className="
+                  inline-block transition-transform duration-200
+                  group-hover:translate-x-1
+                "
+              >
+                →
+              </span>
+              View my work
             </a>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-[15px] font-sans text-secondary hover:text-primary transition-colors flex items-center gap-1">
-              resume.pdf <span className="font-mono text-xs">↗</span>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[12px] text-secondary hover:text-primary transition-colors duration-120 flex items-center gap-1"
+            >
+              resume.pdf <span className="text-[10px]">↗</span>
             </a>
           </div>
         </div>
 
-        {/* Right Column (Metrics Panel) */}
-        <div className="w-full md:w-[45%]">
-          <div className="bg-surface border border-border rounded p-[24px_28px]">
-            <div className="font-mono text-[11px] text-secondary uppercase tracking-[0.1em] mb-4">
-              system / metrics
+        {/* ── Right: Metrics Panel ──────────────────────── */}
+        <div className="md:w-[45%]">
+          <div
+            className="
+              bg-surface border border-border rounded
+              overflow-hidden
+            "
+          >
+            {/* Panel header */}
+            <div className="px-6 py-3 border-b border-border flex items-center justify-between">
+              <span className="font-mono text-[11px] text-muted tracking-[0.12em]">
+                system / metrics
+              </span>
+              {/* Traffic-light dots — purely decorative, aria-hidden */}
+              <div className="flex items-center gap-1.5" aria-hidden="true">
+                <span className="w-2.5 h-2.5 rounded-full bg-border" />
+                <span className="w-2.5 h-2.5 rounded-full bg-border" />
+                <span className="w-2.5 h-2.5 rounded-full bg-border" />
+              </div>
             </div>
-            
-            <hr className="border-t border-border mb-2" />
-            
-            <div className="flex flex-col relative min-h-[220px]">
-              {showCursor && (
-                <div className="absolute top-2 left-0 font-mono text-[18px] text-metric opacity-80 animate-pulse">
+
+            {/* Metrics list */}
+            <div className="px-6 py-4 relative">
+              {/* Cursor blink */}
+              {cursor && (
+                <div
+                  aria-hidden="true"
+                  className="absolute top-4 left-6 font-mono text-[18px] text-metric animate-pulse"
+                >
                   |
                 </div>
               )}
-              
-              {metrics.map((metric, i) => (
-                <div 
-                  key={i} 
-                  className={`flex justify-between items-center py-2 border-b border-border last:border-0 transition-all duration-200 ${
-                    mounted && !prefersReducedMotion && !visibleRows[i] 
-                      ? "opacity-0 translate-y-1" 
-                      : "opacity-100 translate-y-0"
-                  }`}
+
+              {METRICS.map((m, i) => (
+                <div
+                  key={m.label}
+                  style={{
+                    transitionDelay: prefersReducedMotion ? "0ms" : `${i * 30}ms`,
+                  }}
+                  className={`
+                    flex items-center justify-between py-2.5
+                    border-b border-border-muted last:border-0
+                    transition-all duration-200
+                    ${visible[i]
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-1"
+                    }
+                  `}
                 >
-                  <div className="font-mono text-[18px] text-metric min-h-[27px]">
-                    {typedValues[i] || metric.value}
-                  </div>
-                  <div className="font-mono text-[12px] text-secondary text-right">
-                    {metric.label}
-                  </div>
+                  {/* Metric value */}
+                  <span className="font-mono text-[17px] font-semibold text-metric min-w-[80px]">
+                    {typed[i] || m.value}
+                  </span>
+                  {/* Label */}
+                  <span className="font-mono text-[11px] text-secondary text-right leading-tight">
+                    {m.label}
+                  </span>
                 </div>
               ))}
             </div>
 
-            <hr className="border-t border-border mt-4 mb-4" />
-            
-            <div className="font-mono text-[11px] text-secondary flex items-center gap-2">
-              <span className="text-accent text-[14px] leading-none">●</span> currently · Affinsys AI, Bangalore
+            {/* Panel footer */}
+            <div className="px-6 py-3 border-t border-border flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" aria-hidden="true" />
+              <span className="font-mono text-[11px] text-secondary">
+                currently · Affinsys AI, Bangalore
+              </span>
             </div>
           </div>
         </div>
-        
+
       </div>
     </section>
   );

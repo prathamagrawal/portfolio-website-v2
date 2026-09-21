@@ -1,55 +1,75 @@
 import Image from "next/image";
 import SectionLabel from "./SectionLabel";
 
-export default function About() {
-  const skills = [
-    "Python", "PostgreSQL", "Kubernetes",
-    "RabbitMQ / NATS", "Redis", "Apache Kafka",
-    "Docker", "Helm", "Prometheus / Grafana",
-    "Apache Airflow", "Apache Spark", "AWS (S3, EC2)",
-    "SQL", "MongoDB", "GitHub Actions",
-    "Anthropic API / OpenAI", "FastAPI", "Next.js"
-  ];
+const SKILLS = [
+  "Python",        "PostgreSQL",     "Kubernetes",
+  "RabbitMQ",      "NATS",           "Redis",
+  "Apache Kafka",  "Docker",         "Helm",
+  "Prometheus",    "Grafana",        "Apache Airflow",
+  "Apache Spark",  "AWS S3 / EC2",   "GitHub Actions",
+  "Anthropic API", "FastAPI",        "Next.js",
+];
 
+export default function About() {
   return (
     <SectionLabel label="about" id="about">
-      <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-16">
-        
-        {/* Left: Prose + Skills */}
-        <div className="flex-[3]">
-          <div className="font-sans text-base text-primary space-y-5 leading-relaxed max-w-[680px]">
-            <p>
-              I build the infrastructure that makes data move. Not &quot;full-stack&quot; — specifically the layer between raw events and actionable insight: message queues, replication topologies, distributed caches, event-driven warehouses, and the orchestration glue that holds them together under load.
+      <div className="flex flex-col-reverse md:flex-row gap-12 md:gap-16 lg:gap-20">
+
+        {/* ── Prose + Skills ───────────────────── */}
+        <div className="md:flex-[3]">
+          <div className="space-y-5 max-w-[680px]">
+            <p className="text-[15px] leading-[1.8] text-secondary">
+              I build the infrastructure that makes data move. Not{" "}
+              <span className="text-primary">&ldquo;full-stack&rdquo;</span>
+              {" "}— specifically the layer between raw events and actionable
+              insight: message queues, replication topologies, distributed
+              caches, event-driven warehouses, and the orchestration glue that
+              holds them together under load.
             </p>
-            <p>
-              At Affinsys AI I&apos;ve shipped an NLQ-to-SQL analytics engine that eliminated dashboard creation lag by 90%, a Kubernetes-hosted PostgreSQL cluster with sub-60s automatic failover, and an event-driven warehouse ingesting from 10+ services at sub-second latency. The common thread: systems that behave predictably when the inputs are anything but.
+            <p className="text-[15px] leading-[1.8] text-secondary">
+              At Affinsys AI I&apos;ve shipped an NLQ-to-SQL analytics engine that
+              eliminated dashboard creation time by{" "}
+              <span className="metric">90%</span>, a Kubernetes-hosted
+              PostgreSQL cluster with{" "}
+              <span className="metric">sub-60s</span> automatic failover, and
+              an event-driven warehouse ingesting from{" "}
+              <span className="metric">10+</span> services at{" "}
+              <span className="metric">sub-second</span> latency. The common
+              thread: systems that behave predictably when the inputs are
+              anything but.
             </p>
-            <p>
-              I care about observable systems — the kind where a 3am alert tells you exactly what broke, why, and what to do next. That means structured logging, metric discipline, and architecture that makes failure modes explicit. If you want to talk distributed systems, data pipelines, or LLM-powered automation, I&apos;m interested.
+            <p className="text-[15px] leading-[1.8] text-secondary">
+              I care about observable systems — the kind where a 3am alert
+              tells you exactly what broke, why, and what to do next. That
+              means structured logging, metric discipline, and architecture
+              that makes failure modes explicit. If you want to talk
+              distributed systems, data pipelines, or LLM-powered automation,
+              I&apos;m interested.
             </p>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {skills.map(skill => (
-              <div 
-                key={skill} 
-                className="font-mono text-[11px] text-secondary bg-[rgba(56,139,253,0.12)] px-2 py-1 rounded-[2px] w-fit"
-              >
+          {/* Skills grid */}
+          <div className="mt-10 flex flex-wrap gap-2">
+            {SKILLS.map((skill) => (
+              <span key={skill} className="tag">
                 {skill}
-              </div>
+              </span>
             ))}
           </div>
         </div>
 
-        {/* Right: Photo */}
-        <div className="flex-[1] flex justify-center md:justify-start">
-          <Image 
-            src="/photo.jpg" 
-            alt="Pratham Agrawal" 
-            width={280} 
-            height={280} 
-            className="w-[160px] h-[160px] md:w-[280px] md:h-[280px] border border-border rounded object-cover flex-shrink-0"
-          />
+        {/* ── Photo ───────────────────────────── */}
+        <div className="md:flex-[1] flex justify-start">
+          <div className="relative w-[160px] h-[160px] md:w-[220px] md:h-[220px] flex-shrink-0">
+            <Image
+              src="/photo.jpg"
+              alt="Pratham Agrawal"
+              fill
+              className="object-cover object-top rounded border border-border"
+              sizes="(max-width: 768px) 160px, 220px"
+              priority
+            />
+          </div>
         </div>
 
       </div>

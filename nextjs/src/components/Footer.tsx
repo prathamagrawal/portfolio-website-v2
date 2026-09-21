@@ -1,10 +1,22 @@
 export default function Footer() {
   return (
-    <footer>
-      <hr className="border-t border-border" />
-      <div className="py-6 flex justify-between items-center font-mono text-[11px] text-secondary">
-        <div>Designed & built by Pratham Agrawal</div>
-        <div>© {new Date().getFullYear()}</div>
+    <footer className="mt-4 pb-10">
+      <hr className="rule mb-8" />
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <p className="font-mono text-[11px] text-muted">
+          Designed &amp; built by{" "}
+          <a
+            href="https://github.com/prathamagrawal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-secondary hover:text-accent transition-colors duration-120"
+          >
+            Pratham Agrawal
+          </a>
+        </p>
+        <p className="font-mono text-[11px] text-muted">
+          Next.js · Tailwind CSS · IBM Plex Mono
+        </p>
       </div>
     </footer>
   );

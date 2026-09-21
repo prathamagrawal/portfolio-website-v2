@@ -1,45 +1,66 @@
 import SectionLabel from "./SectionLabel";
 
+const SOCIALS = [
+  { name: "GitHub",    href: "https://github.com/prathamagrawal" },
+  { name: "LinkedIn",  href: "https://www.linkedin.com/in/pratham-manish-agrawal" },
+  { name: "Twitter",   href: "https://twitter.com/fearsomejockey" },
+  { name: "Kaggle",    href: "https://www.kaggle.com/fearsomejockey" },
+  { name: "Instagram", href: "https://www.instagram.com/prathammanishagrawal" },
+];
+
 export default function Contact() {
   return (
     <SectionLabel label="contact" id="contact">
-      <div className="max-w-[600px]">
-        <h2 className="font-sans text-[32px] font-bold text-primary mt-8">
+      <div className="max-w-[560px]">
+
+        <h2 className="font-sans text-[28px] md:text-[32px] font-bold text-primary tracking-tight leading-tight">
           Let&apos;s talk systems.
         </h2>
-        
-        <p className="font-sans text-[16px] text-secondary mt-4 max-w-[480px] leading-relaxed">
-          I&apos;m open to infra, data engineering, and ML platform roles.
+
+        <p className="font-sans text-[15px] text-secondary leading-[1.8] mt-4 max-w-[440px]">
+          Open to infra, data engineering, and ML platform roles.
           Prefer async — email first, calls by arrangement.
         </p>
 
+        {/* Email */}
         <div className="mt-8">
-          <a 
+          <a
             href="mailto:prathamagrawal1205@gmail.com"
-            className="font-mono text-[15px] text-accent hover:underline"
+            className="
+              font-mono text-[14px] text-accent
+              hover:text-accent-hover
+              underline underline-offset-4 decoration-accent/30
+              hover:decoration-accent
+              transition-colors duration-150
+            "
           >
             prathamagrawal1205@gmail.com
           </a>
         </div>
 
-        <hr className="border-t border-border mt-10 mb-6" />
+        {/* Divider */}
+        <hr className="rule mt-10 mb-7" />
 
-        <div className="flex flex-wrap flex-row gap-6 font-mono text-[13px]">
-          <a href="https://github.com/prathamagrawal" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-accent transition-colors">
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/pratham-manish-agrawal" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-accent transition-colors">
-            LinkedIn
-          </a>
-          <a href="https://twitter.com/fearsomejockey" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-accent transition-colors">
-            Twitter
-          </a>
-          <a href="https://www.kaggle.com/fearsomejockey" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-accent transition-colors">
-            Kaggle
-          </a>
-          <a href="https://www.instagram.com/prathammanishagrawal" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-accent transition-colors">
-            Instagram
-          </a>
+        {/* Social links */}
+        <div className="flex flex-wrap gap-x-6 gap-y-3">
+          {SOCIALS.map((s, i) => (
+            <span key={s.name} className="flex items-center gap-6">
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[12px] text-secondary hover:text-accent transition-colors duration-120"
+              >
+                {s.name}
+              </a>
+              {/* Dot separator between links — except last */}
+              {i < SOCIALS.length - 1 && (
+                <span className="text-border select-none font-mono text-[10px]" aria-hidden="true">
+                  ·
+                </span>
+              )}
+            </span>
+          ))}
         </div>
       </div>
     </SectionLabel>
