@@ -119,6 +119,55 @@ a {
   transition: color var(--transition-fast);
 }
 
+/* ─── Layout Containers ──────────────────────────────────────────── */
+/*
+ * Tailwind v4 does NOT JIT-scan arbitrary bracket values (max-w-[1100px])
+ * from JSX class strings — they generate no CSS. All structural layout
+ * constraints must be defined here as real CSS classes.
+ */
+
+/* Main page container — 1100px max, centered, with horizontal padding */
+.layout-container {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+@media (min-width: 768px) {
+  .layout-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* Prose text column — optimal reading line length */
+.prose-container  { max-width: 680px; }
+.narrow-container { max-width: 560px; }
+.contact-p        { max-width: 440px; }
+.hero-sub         { max-width: 480px; }
+
+/* Hero two-column grid */
+.hero-grid {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+@media (min-width: 768px) {
+  .hero-grid {
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+  }
+  .hero-grid .hero-left  { width: 55%; }
+  .hero-grid .hero-right { width: 45%; }
+}
+@media (min-width: 1024px) {
+  .hero-grid { gap: 4rem; }
+}
+
 /* ─── Utility: Hairline Rule ─────────────────────────────────────── */
 .rule {
   border: none;

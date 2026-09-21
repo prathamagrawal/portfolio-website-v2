@@ -17,7 +17,6 @@ function useScrollDirection() {
   useEffect(() => {
     const handler = () => {
       const y = window.scrollY;
-      // Only hide after scrolling down 80px from top
       if (y < 80) { setHidden(false); return; }
       setHidden(y > lastY.current && y - lastY.current > 4);
       lastY.current = y;
@@ -33,13 +32,11 @@ export default function Nav() {
   const hidden = useScrollDirection();
   const [open, setOpen] = useState(false);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  // Close on Escape
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -51,34 +48,57 @@ export default function Nav() {
   return (
     <>
       <header
-        className={`
-          fixed top-0 left-0 right-0 z-50 h-16
-          bg-bg/90 backdrop-blur-sm
-          border-b border-border
-          transition-transform duration-300 ease-in-out
-          ${hidden ? "-translate-y-full" : "translate-y-0"}
-        `}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          height: "64px",
+          backgroundColor: "rgba(13,17,23,0.9)",
+          backdropFilter: "blur(8px)",
+          borderBottom: "1px solid var(--border)",
+          transform: hidden ? "translateY(-100%)" : "translateY(0)",
+          transition: "transform 300ms ease",
+        }}
       >
-        <nav
-          aria-label="Main navigation"
-          className="h-full max-w-[1100px] mx-auto px-6 md:px-10 flex items-center justify-between"
+        {/* Inner container — uses .layout-container so it centers at 1100px */}
+        <div
+          className="layout-container"
+          style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}
         >
-          {/* Logo */}
           <Link
             href="/"
             aria-label="Home"
-            className="font-mono text-[15px] font-semibold text-accent hover:text-accent-hover transition-colors duration-120"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "15px",
+              fontWeight: 600,
+              color: "var(--accent)",
+              textDecoration: "none",
+              transition: "color 120ms ease",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-hover)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--accent)")}
           >
             PA
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex" style={{ alignItems: "center", gap: "2rem" }}>
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.name}
                 href={l.href}
-                className="font-sans text-[14px] text-secondary hover:text-primary transition-colors duration-120"
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "14px",
+                  color: "var(--text-secondary)",
+                  textDecoration: "none",
+                  transition: "color 120ms ease",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
               >
                 {l.name}
               </Link>
@@ -87,11 +107,18 @@ export default function Nav() {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="
-                font-mono text-[12px] text-accent border border-accent
-                px-3 py-1.5 rounded hover:bg-accent-dim
-                transition-colors duration-150
-              "
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "12px",
+                color: "var(--accent)",
+                border: "1px solid var(--accent)",
+                padding: "5px 12px",
+                borderRadius: "4px",
+                textDecoration: "none",
+                transition: "background-color 150ms ease",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--accent-dim)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
               Resume ↗
             </a>
@@ -99,32 +126,49 @@ export default function Nav() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5"
+            className="md:hidden"
             onClick={() => setOpen(true)}
             aria-label="Open menu"
             aria-expanded={open}
             aria-controls="mobile-menu"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", display: "flex", flexDirection: "column", gap: "5px" }}
           >
-            <span className="w-5 h-[1.5px] bg-secondary block rounded-full" />
-            <span className="w-5 h-[1.5px] bg-secondary block rounded-full" />
-            <span className="w-3 h-[1.5px] bg-secondary block rounded-full ml-[-8px]" />
+            <span style={{ display: "block", width: "20px", height: "1.5px", backgroundColor: "var(--text-secondary)", borderRadius: "2px" }} />
+            <span style={{ display: "block", width: "20px", height: "1.5px", backgroundColor: "var(--text-secondary)", borderRadius: "2px" }} />
+            <span style={{ display: "block", width: "13px", height: "1.5px", backgroundColor: "var(--text-secondary)", borderRadius: "2px" }} />
           </button>
-        </nav>
+        </div>
       </header>
 
       {/* Mobile overlay */}
       <div
         id="mobile-menu"
         aria-hidden={!open}
-        className={`
-          fixed inset-0 z-[60] bg-bg flex flex-col items-center justify-center
-          transition-opacity duration-200
-          ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
-        `}
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 60,
+          backgroundColor: "var(--bg)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? "auto" : "none",
+          transition: "opacity 200ms ease",
+        }}
       >
-        {/* Close */}
         <button
-          className="absolute top-5 right-6 w-9 h-9 flex items-center justify-center text-secondary hover:text-primary transition-colors"
+          style={{
+            position: "absolute",
+            top: "20px",
+            right: "24px",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            color: "var(--text-secondary)",
+            padding: "8px",
+          }}
           onClick={() => setOpen(false)}
           aria-label="Close menu"
         >
@@ -134,13 +178,13 @@ export default function Nav() {
           </svg>
         </button>
 
-        <nav className="flex flex-col items-center gap-8">
+        <nav style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "2rem" }}>
           {NAV_LINKS.map((l) => (
             <Link
               key={l.name}
               href={l.href}
-              className="font-sans text-2xl text-secondary hover:text-primary transition-colors"
               onClick={() => setOpen(false)}
+              style={{ fontFamily: "var(--font-sans)", fontSize: "22px", color: "var(--text-secondary)", textDecoration: "none" }}
             >
               {l.name}
             </Link>
@@ -149,8 +193,17 @@ export default function Nav() {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[14px] text-accent border border-accent px-5 py-2 rounded hover:bg-accent-dim transition-colors mt-2"
             onClick={() => setOpen(false)}
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "14px",
+              color: "var(--accent)",
+              border: "1px solid var(--accent)",
+              padding: "8px 20px",
+              borderRadius: "4px",
+              textDecoration: "none",
+              marginTop: "8px",
+            }}
           >
             Resume ↗
           </a>

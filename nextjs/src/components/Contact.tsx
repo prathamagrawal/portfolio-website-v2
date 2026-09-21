@@ -11,13 +11,13 @@ const SOCIALS = [
 export default function Contact() {
   return (
     <SectionLabel label="contact" id="contact">
-      <div className="max-w-[560px]">
+      <div className="narrow-container">
 
         <h2 className="font-sans text-[28px] md:text-[32px] font-bold text-primary tracking-tight leading-tight">
           Let&apos;s talk systems.
         </h2>
 
-        <p className="font-sans text-[15px] text-secondary leading-[1.8] mt-4 max-w-[440px]">
+        <p className="font-sans text-[15px] text-secondary leading-[1.8] mt-4 contact-p">
           Open to infra, data engineering, and ML platform roles.
           Prefer async — email first, calls by arrangement.
         </p>

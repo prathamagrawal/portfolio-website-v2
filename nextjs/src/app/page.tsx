@@ -12,7 +12,12 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main className="max-w-[1100px] mx-auto px-6 md:px-8">
+      {/*
+       * .layout-container = max-width 1100px, centered, px-6/px-10.
+       * Cannot use max-w-[1100px] — Tailwind v4 does not JIT-scan
+       * arbitrary bracket values from JSX strings.
+       */}
+      <main className="layout-container">
         <Hero />
         <About />
         <Experience />

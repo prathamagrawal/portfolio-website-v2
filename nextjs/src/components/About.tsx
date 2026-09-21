@@ -17,7 +17,7 @@ export default function About() {
 
         {/* ── Prose + Skills ───────────────────── */}
         <div className="md:flex-[3]">
-          <div className="space-y-5 max-w-[680px]">
+          <div className="space-y-5 prose-container">
             <p className="text-[15px] leading-[1.8] text-secondary">
               I build the infrastructure that makes data move. Not{" "}
               <span className="text-primary">&ldquo;full-stack&rdquo;</span>
