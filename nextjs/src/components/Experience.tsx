@@ -180,7 +180,10 @@ export default function Experience() {
             <ul className="timeline-bullets">
               {job.bullets.map((b, i) => (
                 <li key={i} className="timeline-bullet">
-                  {b}
+                  {/* span wrapper is critical: makes the ReactNode a single flex item.
+                      Without it, JSX fragments expand into multiple DOM text/element
+                      nodes each becoming a separate flex column. */}
+                  <span>{b}</span>
                 </li>
               ))}
             </ul>
