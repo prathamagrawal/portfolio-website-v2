@@ -1056,3 +1056,209 @@ a.pub-title:hover { color: var(--accent); }
   text-align: right;
 }
 
+
+/* ─── Modern Hero Styles ─────────────────────────────────────────── */
+.hero-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background-color: rgba(22, 27, 34, 0.8);
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.hero-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #3fb950;
+  box-shadow: 0 0 8px #3fb950;
+  display: inline-block;
+}
+
+.hero-status-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.hero-headline {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  font-size: clamp(2.4rem, 5.2vw, 3.8rem);
+  margin-bottom: 0;
+}
+
+.hero-headline-highlight {
+  color: #58a6ff;
+  background: linear-gradient(120deg, #58a6ff 0%, #a5d6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-lead-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 500px;
+  margin-top: 24px;
+}
+
+.hero-cta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+.hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 0 16px -4px rgba(56, 139, 253, 0.25);
+  transition: all var(--transition-fast);
+}
+.hero-btn-primary:hover {
+  background-color: var(--accent-dim);
+  border-color: var(--accent-hover);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px -2px rgba(56, 139, 253, 0.4);
+}
+
+.hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-decoration: none;
+  background-color: transparent;
+  transition: all var(--transition-fast);
+}
+.hero-btn-secondary:hover {
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Console HUD Container */
+.hero-console-box {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.7),
+              0 0 0 1px rgba(48, 54, 61, 0.6),
+              0 0 32px -8px rgba(56, 139, 253, 0.15);
+}
+
+.hero-console-header {
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--border);
+  background-color: rgba(13, 17, 23, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-console-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.hero-console-window-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.hero-console-window-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--border);
+}
+
+.hero-metric-row {
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--border-muted);
+  transition: background-color var(--transition-fast);
+}
+.hero-metric-row:last-child {
+  border-bottom: none;
+}
+.hero-metric-row:hover {
+  background-color: rgba(56, 139, 253, 0.04);
+}
+
+.hero-metric-content {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.hero-metric-value {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--metric);
+  letter-spacing: -0.02em;
+}
+
+.hero-metric-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.hero-metric-bar-bg {
+  width: 100%;
+  height: 2.5px;
+  background-color: rgba(48, 54, 61, 0.6);
+  border-radius: 2px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.hero-metric-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #388bfd 0%, #58a6ff 100%);
+  border-radius: 2px;
+  transition: width 800ms ease-out;
+}
+
+.hero-console-footer {
+  padding: 10px 18px;
+  border-top: 1px solid var(--border);
+  background-color: rgba(13, 17, 23, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

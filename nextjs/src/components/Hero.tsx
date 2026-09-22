@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const METRICS = [
-  { value: "sub-60s",   label: "failover time"          },
-  { value: "sub-1s",    label: "ingestion latency"      },
-  { value: "90%",       label: "dashboard time cut"     },
-  { value: "40%",       label: "DB load reduction"      },
-  { value: "15 hrs/wk", label: "reporting effort saved" },
-  { value: "10+",       label: "services integrated"    },
+  { value: "sub-60s",   label: "failover time (Mirror-DB)",   pct: 88  },
+  { value: "sub-1s",    label: "ingestion latency (Eventlogger)", pct: 94 },
+  { value: "90%",       label: "dashboard time cut (Datalens)", pct: 90 },
+  { value: "40%",       label: "DB load reduction (SQL views)", pct: 40 },
+  { value: "15 hrs/wk", label: "reporting effort automated",  pct: 75  },
+  { value: "10+",       label: "services in event mesh",       pct: 100 },
 ];
 
 function useTypewriterSequence(
@@ -43,9 +43,9 @@ function useTypewriterSequence(
           }, ri * 90);
           ids.push(tRow);
         });
-      }, 500);
+      }, 450);
       ids.push(t1);
-    }, 300);
+    }, 250);
     ids.push(t0);
     return () => ids.forEach(clearTimeout);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,132 +59,122 @@ export default function Hero() {
   const { typed, visible, cursor } = useTypewriterSequence(METRICS, prefersReducedMotion);
 
   return (
-    <section style={{ minHeight: "92vh", display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "80px", paddingBottom: "64px" }}>
-      {/* .hero-grid handles the two-column responsive layout via CSS */}
+    <section style={{ minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "84px", paddingBottom: "72px" }}>
       <div className="hero-grid">
 
-        {/* ── Left column ── */}
+        {/* ── Left Column: Headline & Position ── */}
         <div className="hero-left" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
 
-          <p style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--text-secondary)", letterSpacing: "0.12em", marginBottom: "20px" }}>
-            pratham agrawal
-          </p>
+          {/* Status badge */}
+          <div className="hero-status-pill">
+            <span className="hero-pulse-dot" aria-hidden="true" />
+            <span className="hero-status-text">
+              pratham agrawal · systems &amp; data infra
+            </span>
+          </div>
 
-          <h1 style={{
-            fontFamily: "var(--font-sans)",
-            fontWeight: 700,
-            color: "var(--text-primary)",
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em",
-            fontSize: "clamp(2.2rem, 5.5vw, 4rem)",
-            marginBottom: 0,
-          }}>
-            Backend &amp;<br />
-            Data Infrastructure<br />
-            Engineer.
+          {/* Clean, balanced headline */}
+          <h1 className="hero-headline">
+            Backend &amp; Data<br />
+            <span className="hero-headline-highlight">Infrastructure</span> Engineer.
           </h1>
 
-          <p className="hero-sub" style={{ fontFamily: "var(--font-sans)", fontSize: "15px", color: "var(--text-secondary)", marginTop: "24px", lineHeight: 1.75 }}>
-            Building high-throughput pipelines, distributed systems, and
+          {/* Lead description */}
+          <p className="hero-lead-text">
+            Building high-throughput data pipelines, distributed storage topologies, and
             LLM-powered automation.{" "}
-            <span style={{ color: "var(--text-primary)", opacity: 0.65 }}>Currently at Affinsys AI.</span>
+            <span style={{ color: "var(--text-primary)", opacity: 0.75 }}>Currently at Affinsys AI.</span>
           </p>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "32px", marginTop: "36px" }}>
-            <a
-              href="#projects"
-              style={{ fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 500, color: "var(--accent)", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px", transition: "color 120ms ease" }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = "var(--accent-hover)"; (e.currentTarget.querySelector("span") as HTMLElement).style.transform = "translateX(4px)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = "var(--accent)"; (e.currentTarget.querySelector("span") as HTMLElement).style.transform = "translateX(0)"; }}
-            >
-              <span style={{ display: "inline-block", transition: "transform 200ms ease" }}>→</span>
-              View my work
+          {/* Interactive CTAs */}
+          <div className="hero-cta-wrap">
+            <a href="#projects" className="hero-btn-primary">
+              <span>View my work</span>
+              <span aria-hidden="true" style={{ fontSize: "14px", transform: "translateY(1px)" }}>↓</span>
             </a>
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--text-secondary)", textDecoration: "none", transition: "color 120ms ease" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+              className="hero-btn-secondary"
             >
-              resume.pdf ↗
+              <span>resume.pdf</span>
+              <span aria-hidden="true" style={{ fontSize: "12px", opacity: 0.7 }}>↗</span>
             </a>
           </div>
+
         </div>
 
-        {/* ── Right column: Metrics Panel ── */}
+        {/* ── Right Column: Telemetry / Metrics Console ── */}
         <div className="hero-right" style={{ width: "100%" }}>
-          <div style={{
-            backgroundColor: "var(--surface)",
-            border: "1px solid var(--border)",
-            borderRadius: "4px",
-            overflow: "hidden",
-          }}>
-            {/* Panel header */}
-            <div style={{
-              padding: "10px 20px",
-              borderBottom: "1px solid var(--border)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-muted)", letterSpacing: "0.12em" }}>
-                system / metrics
-              </span>
-              <div style={{ display: "flex", gap: "5px" }} aria-hidden="true">
-                {[0,1,2].map((i) => (
-                  <span key={i} style={{ width: "9px", height: "9px", borderRadius: "50%", backgroundColor: "var(--border)" }} />
+          <div className="hero-console-box">
+
+            {/* Console Header */}
+            <div className="hero-console-header">
+              <div className="hero-console-title">
+                <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "#3fb950", boxShadow: "0 0 6px #3fb950" }} aria-hidden="true" />
+                <span>telemetry / production-metrics</span>
+              </div>
+              <div className="hero-console-window-dots" aria-hidden="true">
+                {[0, 1, 2].map((i) => (
+                  <span key={i} className="hero-console-window-dot" />
                 ))}
               </div>
             </div>
 
-            {/* Metrics rows */}
-            <div style={{ padding: "8px 0", position: "relative" }}>
+            {/* Metrics List */}
+            <div style={{ padding: "4px 0", position: "relative" }}>
               {cursor && (
                 <div aria-hidden="true" style={{
                   position: "absolute", top: "12px", left: "20px",
-                  fontFamily: "var(--font-mono)", fontSize: "18px", color: "var(--metric)",
-                  animation: "pulse 1s ease-in-out infinite",
+                  fontFamily: "var(--font-mono)", fontSize: "16px", color: "var(--metric)",
                 }}>|</div>
               )}
               {METRICS.map((m, i) => (
                 <div
                   key={m.label}
+                  className="hero-metric-row"
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "9px 20px",
-                    borderBottom: i < METRICS.length - 1 ? "1px solid var(--border-muted)" : "none",
                     opacity: visible[i] ? 1 : 0,
                     transform: visible[i] ? "translateY(0)" : "translateY(4px)",
                     transition: `opacity 200ms ease ${i * 30}ms, transform 200ms ease ${i * 30}ms`,
                   }}
                 >
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "17px", fontWeight: 600, color: "var(--metric)", minWidth: "80px" }}>
-                    {typed[i] || m.value}
-                  </span>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-secondary)", textAlign: "right" }}>
-                    {m.label}
-                  </span>
+                  <div className="hero-metric-content">
+                    <span className="hero-metric-value">
+                      {typed[i] || m.value}
+                    </span>
+                    <span className="hero-metric-label">
+                      {m.label}
+                    </span>
+                  </div>
+
+                  {/* Visual telemetry progress gauge */}
+                  <div className="hero-metric-bar-bg" aria-hidden="true">
+                    <div
+                      className="hero-metric-bar-fill"
+                      style={{
+                        width: visible[i] ? `${m.pct}%` : "0%",
+                      }}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
 
-            {/* Panel footer */}
-            <div style={{
-              padding: "10px 20px",
-              borderTop: "1px solid var(--border)",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-            }}>
-              <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "var(--accent)", display: "inline-block" }} aria-hidden="true" />
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-secondary)" }}>
-                currently · Affinsys AI, Bangalore
+            {/* Console Footer */}
+            <div className="hero-console-footer">
+              <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
+                <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "var(--accent)" }} aria-hidden="true" />
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--text-secondary)" }}>
+                  cluster: healthy · Affinsys AI, Bangalore
+                </span>
+              </div>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "var(--text-muted)", letterSpacing: "0.06em" }}>
+                p99 live
               </span>
             </div>
+
           </div>
         </div>
 
