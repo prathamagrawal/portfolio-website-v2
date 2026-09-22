@@ -7,16 +7,18 @@ import OtherProjects from "@/components/OtherProjects";
 import Publications from "@/components/Publications";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import SocialSidebar from "@/components/SocialSidebar";
 
 export default function Home() {
   return (
     <>
       <Nav />
       {/*
-       * .layout-container = max-width 1100px, centered, px-6/px-10.
-       * Cannot use max-w-[1100px] — Tailwind v4 does not JIT-scan
-       * arbitrary bracket values from JSX strings.
+       * SocialSidebar is position:fixed and sits outside <main>
+       * so it doesn't affect the document flow.
+       * Hidden via CSS on viewports < 1380px.
        */}
+      <SocialSidebar />
       <main className="layout-container">
         <Hero />
         <About />

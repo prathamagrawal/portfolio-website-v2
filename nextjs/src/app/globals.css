@@ -873,3 +873,186 @@ a.pub-title:hover { color: var(--accent); }
   color: var(--border);
   user-select: none;
 }
+
+/* ─── Fixed Stationary Socials ───────────────────────────────────── */
+/*
+ * Desktop: fixed vertical rail on the left bottom with grounding line.
+ * Mobile/Tablet: fixed floating bottom dock pill with glassmorphism blur.
+ * Truly stationary all over the page across every screen size.
+ */
+.social-sidebar {
+  position: fixed;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+}
+
+/* Mobile & Tablet (< 1024px): floating bottom pill dock */
+@media (max-width: 1023px) {
+  .social-sidebar {
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 16px;
+    padding: 10px 20px;
+    background: rgba(13, 17, 23, 0.90);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(56, 139, 253, 0.08);
+  }
+  .social-sidebar-line {
+    display: none;
+  }
+}
+
+/* Desktop (>= 1024px): anchored left rail */
+@media (min-width: 1024px) {
+  .social-sidebar {
+    left: clamp(14px, 2.5vw, 36px);
+    bottom: 0;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .social-sidebar-line {
+    display: block;
+    width: 1px;
+    height: 76px;
+    background: linear-gradient(
+      to bottom,
+      var(--border) 0%,
+      var(--border-muted) 80%,
+      transparent 100%
+    );
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+}
+
+.social-sidebar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast),
+              transform var(--transition-fast);
+  padding: 4px;
+  position: relative;
+}
+.social-sidebar-icon:hover {
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* ─── Section Header (SectionLabel Upgrade) ──────────────────────── */
+/*
+ * Authoritative, high-contrast systems section header.
+ * Replaces the tiny 12px raw text with a bold title and integrated
+ * architectural rule line extending across the content width.
+ */
+.section-header-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+@media (min-width: 768px) {
+  .section-header-wrap {
+    gap: 1.75rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.section-heading-group {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.section-hash {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+@media (min-width: 768px) {
+  .section-hash {
+    font-size: 1.55rem;
+  }
+}
+
+.section-title {
+  font-family: var(--font-sans);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 1.85rem;
+  }
+}
+
+.section-header-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--border) 0%,
+    var(--border-muted) 65%,
+    transparent 100%
+  );
+  min-width: 32px;
+}
+
+/* ─── Systems Contact Panel ──────────────────────────────────────── */
+.contact-spec-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.contact-spec-header {
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-spec-body {
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-spec-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.contact-spec-key {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.contact-spec-val {
+  color: var(--text-secondary);
+  text-align: right;
+}
+
