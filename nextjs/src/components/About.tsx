@@ -1,74 +1,115 @@
 import Image from "next/image";
 import SectionLabel from "./SectionLabel";
 
-const SKILLS = [
-  "Python",        "PostgreSQL",     "Kubernetes",
-  "RabbitMQ",      "NATS",           "Redis",
-  "Apache Kafka",  "Docker",         "Helm",
-  "Prometheus",    "Grafana",        "Apache Airflow",
-  "Apache Spark",  "AWS S3 / EC2",   "GitHub Actions",
-  "Anthropic API", "FastAPI",        "Next.js",
+const SKILL_GROUPS = [
+  {
+    label: "languages & databases",
+    skills: ["Python", "SQL", "PostgreSQL", "MongoDB", "Redis"],
+  },
+  {
+    label: "infrastructure & orchestration",
+    skills: ["Kubernetes", "Docker", "Helm", "Apache Airflow", "GitHub Actions"],
+  },
+  {
+    label: "messaging & streaming",
+    skills: ["RabbitMQ", "NATS", "Apache Kafka", "Apache Spark"],
+  },
+  {
+    label: "observability & cloud",
+    skills: ["Prometheus", "Grafana", "AWS S3 / EC2"],
+  },
+  {
+    label: "apis & ai",
+    skills: ["FastAPI", "Anthropic API", "Next.js"],
+  },
 ];
 
 export default function About() {
   return (
     <SectionLabel label="about" id="about">
-      <div className="flex flex-col-reverse md:flex-row gap-12 md:gap-16 lg:gap-20">
+      <div className="about-grid">
 
-        {/* ── Prose + Skills ───────────────────── */}
-        <div className="md:flex-[3]">
-          <div className="space-y-5 prose-container">
-            <p className="text-[15px] leading-[1.8] text-secondary">
+        {/* ── Prose + Skills ───────────────────────────────── */}
+        <div className="about-text">
+
+          <div className="about-prose">
+            <p>
               I build the infrastructure that makes data move. Not{" "}
-              <span className="text-primary">&ldquo;full-stack&rdquo;</span>
-              {" "}— specifically the layer between raw events and actionable
-              insight: message queues, replication topologies, distributed
-              caches, event-driven warehouses, and the orchestration glue that
-              holds them together under load.
+              <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>&ldquo;full-stack&rdquo;</span>
+              {" "}— specifically the layer between raw events and actionable insight:
+              message queues, replication topologies, distributed caches, event-driven
+              warehouses, and the orchestration glue that holds them together under load.
             </p>
-            <p className="text-[15px] leading-[1.8] text-secondary">
-              At Affinsys AI I&apos;ve shipped an NLQ-to-SQL analytics engine that
-              eliminated dashboard creation time by{" "}
-              <span className="metric">90%</span>, a Kubernetes-hosted
-              PostgreSQL cluster with{" "}
-              <span className="metric">sub-60s</span> automatic failover, and
-              an event-driven warehouse ingesting from{" "}
+            <p>
+              At Affinsys AI I&apos;ve shipped an NLQ-to-SQL analytics engine that cut
+              dashboard creation time by{" "}
+              <span className="metric">90%</span>, a Kubernetes-hosted PostgreSQL cluster
+              with <span className="metric">sub-60s</span> automatic failover, and an
+              event-driven warehouse ingesting from{" "}
               <span className="metric">10+</span> services at{" "}
-              <span className="metric">sub-second</span> latency. The common
-              thread: systems that behave predictably when the inputs are
-              anything but.
+              <span className="metric">sub-second</span> latency. The common thread:
+              systems that behave predictably when the inputs are anything but.
             </p>
-            <p className="text-[15px] leading-[1.8] text-secondary">
-              I care about observable systems — the kind where a 3am alert
-              tells you exactly what broke, why, and what to do next. That
-              means structured logging, metric discipline, and architecture
-              that makes failure modes explicit. If you want to talk
-              distributed systems, data pipelines, or LLM-powered automation,
-              I&apos;m interested.
+            <p>
+              I care about observable systems — the kind where a 3am alert tells you
+              exactly what broke, why, and what to do next. That means structured
+              logging, metric discipline, and architecture that makes failure modes
+              explicit. If you want to talk distributed systems, data pipelines, or
+              LLM-powered automation, I&apos;m interested.
             </p>
           </div>
 
-          {/* Skills grid */}
-          <div className="mt-10 flex flex-wrap gap-2">
-            {SKILLS.map((skill) => (
-              <span key={skill} className="tag">
-                {skill}
-              </span>
+          {/* Skills — grouped by domain */}
+          <div style={{ marginTop: "2.5rem" }}>
+            {SKILL_GROUPS.map((group) => (
+              <div key={group.label}>
+                <p className="skills-group-label">{group.label}</p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "4px" }}>
+                  {group.skills.map((s) => (
+                    <span key={s} className="tag">{s}</span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* ── Photo ───────────────────────────── */}
-        <div className="md:flex-[1] flex justify-start">
-          <div className="relative w-[160px] h-[160px] md:w-[220px] md:h-[220px] flex-shrink-0">
-            <Image
-              src="/photo.jpg"
-              alt="Pratham Agrawal"
-              fill
-              className="object-cover object-top rounded border border-border"
-              sizes="(max-width: 768px) 160px, 220px"
-              priority
+        {/* ── Photo ────────────────────────────────────────── */}
+        <div className="about-photo">
+          <div className="about-photo-wrap">
+            {/* Decorative offset frame behind photo */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                top: "10px",
+                left: "10px",
+                right: "-10px",
+                bottom: "-10px",
+                border: "1px solid var(--border)",
+                borderRadius: "4px",
+                zIndex: 0,
+              }}
             />
+            <div style={{ position: "relative", zIndex: 1, lineHeight: 0 }}>
+              <Image
+                src="/photo.jpg"
+                alt="Pratham Agrawal"
+                width={240}
+                height={300}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  aspectRatio: "4/5",
+                  objectFit: "cover",
+                  objectPosition: "top center",
+                  borderRadius: "4px",
+                  border: "1px solid var(--border)",
+                  display: "block",
+                }}
+                priority
+              />
+            </div>
           </div>
         </div>
 

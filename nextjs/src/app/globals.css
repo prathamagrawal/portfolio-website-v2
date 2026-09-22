@@ -231,3 +231,188 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
+/* ─── About Section ──────────────────────────────────────────────── */
+.about-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+@media (min-width: 768px) {
+  .about-grid {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 4rem;
+  }
+  .about-text  { flex: 3 1 0%; min-width: 0; }
+  .about-photo { flex: 0 0 auto; }
+}
+
+.about-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;     /* 22px between paragraphs */
+  max-width: 640px;
+}
+
+.about-prose p {
+  font-size: 15px;
+  line-height: 1.82;
+  color: var(--text-secondary);
+}
+
+/* Photo wrapper */
+.about-photo-wrap {
+  position: relative;
+  width: 200px;
+  flex-shrink: 0;
+}
+@media (min-width: 768px) {
+  .about-photo-wrap { width: 220px; }
+}
+@media (min-width: 1024px) {
+  .about-photo-wrap { width: 240px; }
+}
+
+/* Skills group label */
+.skills-group-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+.skills-group-label:first-child { margin-top: 0; }
+
+/* ─── Experience / Timeline ──────────────────────────────────────── */
+.timeline-wrapper {
+  position: relative;
+  padding-left: 24px;   /* room for the rail + dot */
+}
+@media (min-width: 768px) {
+  .timeline-wrapper { padding-left: 32px; }
+}
+
+/* The 1px vertical rail — visible color, not near-invisible */
+.timeline-rail {
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--accent) 0%,
+    var(--border) 120px,
+    var(--border) 100%
+  );
+}
+
+/* Job entry */
+.timeline-entry {
+  position: relative;
+  padding-bottom: 3rem;   /* gap between entries */
+}
+.timeline-entry:last-child { padding-bottom: 0; }
+
+/* Dot — sits ON the rail, offset left by half its width */
+.timeline-dot {
+  position: absolute;
+  left: -28px;            /* half of dot width outside container padding */
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--bg);   /* punches through rail line */
+  flex-shrink: 0;
+}
+@media (min-width: 768px) {
+  .timeline-dot { left: -36px; }
+}
+
+.timeline-dot-dim {
+  position: absolute;
+  left: -28px;
+  top: 10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--border);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+@media (min-width: 768px) {
+  .timeline-dot-dim { left: -36px; }
+}
+
+/* Company header row */
+.timeline-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+@media (min-width: 640px) {
+  .timeline-header {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+}
+
+.timeline-company {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  letter-spacing: -0.01em;
+}
+.timeline-company:hover { color: var(--accent); }
+
+.timeline-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.timeline-meta-sep {
+  color: var(--border);
+  user-select: none;
+}
+
+/* Bullet list */
+.timeline-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timeline-bullet {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.78;
+  color: var(--text-secondary);
+}
+
+/* The dash marker */
+.timeline-bullet::before {
+  content: "–";
+  color: var(--border);
+  flex-shrink: 0;
+  margin-top: 1px;   /* optical alignment */
+  user-select: none;
+}
+

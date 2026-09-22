@@ -7,6 +7,7 @@ const JOBS: {
   title: string;
   range: string;
   location: string;
+  current?: boolean;
   bullets: ReactNode[];
 }[] = [
   {
@@ -15,16 +16,17 @@ const JOBS: {
     title: "Software Engineer",
     range: "Jan 2024 – Present",
     location: "Bangalore, India",
+    current: true,
     bullets: [
       <>
-        Designed and shipped <strong className="text-primary font-medium">DBOps</strong> — an
+        Designed and shipped <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>DBOps</strong> — an
         LLM-driven ETL pipeline generator converting natural-language requests into
         executable workflows via Claude (Anthropic API), structured prompt chaining, and
         iterative self-correction. Pipeline authoring: hours →{" "}
         <span className="metric">under 2 minutes</span>.
       </>,
       <>
-        Architected <strong className="text-primary font-medium">Datalens</strong>, a
+        Architected <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>Datalens</strong>, a
         self-serve analytics platform translating NL questions to SQL with
         metadata-driven query construction, SQL sanitization, and a{" "}
         <span className="metric">15+</span> chart-type catalog. Dashboard creation time
@@ -32,25 +34,25 @@ const JOBS: {
         reports independently.
       </>,
       <>
-        Led the multi-tenant <strong className="text-primary font-medium">Analytics</strong>{" "}
+        Led the multi-tenant <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>Analytics</strong>{" "}
         service powering <span className="metric">20+</span> dashboards and{" "}
         <span className="metric">200+</span> charts. Materialized SQL views cut database
         load by <span className="metric">40%</span> and API response time from{" "}
         <span className="metric">800ms → 480ms</span>.
       </>,
       <>
-        Built the <strong className="text-primary font-medium">Analytics Scheduler</strong>{" "}
-        — automates recurring delivery of <span className="metric">100+</span> reports via
-        email, saving <span className="metric">~15 hrs/wk</span> of engineering effort.
+        Built the <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>Analytics Scheduler</strong>{" "}
+        — automates recurring delivery of <span className="metric">100+</span> reports
+        via email, saving <span className="metric">~15 hrs/wk</span> of engineering effort.
       </>,
       <>
-        Implemented the <strong className="text-primary font-medium">Archival</strong>{" "}
+        Implemented the <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>Archival</strong>{" "}
         service: guaranteed data consistency across{" "}
         <span className="metric">10+</span> services including foreign-key resolution,
         failover strategy, purge workflows, and MinIO → AWS S3 migration.
       </>,
       <>
-        Built <strong className="text-primary font-medium">Eventlogger</strong>: a
+        Built <strong style={{ color: "var(--text-primary)", fontWeight: 500 }}>Eventlogger</strong>: a
         high-throughput event-driven warehouse ingesting from{" "}
         <span className="metric">10+</span> services via AMQP and NATS into{" "}
         <span className="metric">40+</span> structured tables at{" "}
@@ -107,8 +109,8 @@ const JOBS: {
     location: "Vellore, India",
     bullets: [
       <>
-        Led a <span className="metric">200+</span> member technical society; coordinated
-        events generating <span className="metric">25%</span> net chapter profit.
+        Led a <span className="metric">200+</span> member technical society;
+        coordinated events generating <span className="metric">25%</span> net chapter profit.
       </>,
       "Mentored members across technical and management tracks toward outlined objectives.",
     ],
@@ -118,66 +120,72 @@ const JOBS: {
 export default function Experience() {
   return (
     <SectionLabel label="experience" id="jobs">
-      <div className="relative">
-        {/* Vertical rail */}
-        <div
-          className="absolute top-3 bottom-0 left-0 w-px bg-border"
-          aria-hidden="true"
-        />
+      {/*
+       * timeline-wrapper: relative container with left padding for the rail.
+       * timeline-rail: the 1px vertical line (gradient accent→border top).
+       * timeline-dot / timeline-dot-dim: the node on the rail.
+       * All structural classes defined in globals.css — no Tailwind arbitrary values.
+       */}
+      <div className="timeline-wrapper">
+        <div className="timeline-rail" aria-hidden="true" />
 
-        <div className="flex flex-col gap-12">
-          {JOBS.map((job) => (
-            <div key={job.company} className="relative pl-7 md:pl-9">
-              {/* Rail dot */}
-              <span
-                className="
-                  absolute left-[-3.5px] top-[11px]
-                  w-[7px] h-[7px] rounded-full
-                  bg-accent ring-2 ring-bg
-                "
-                aria-hidden="true"
-              />
+        {JOBS.map((job) => (
+          <div key={job.company} className="timeline-entry">
+            {/* Node dot on the rail */}
+            <span
+              className={job.current ? "timeline-dot" : "timeline-dot-dim"}
+              aria-hidden="true"
+            />
 
-              {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-4">
-                <a
-                  href={job.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    font-sans text-[17px] font-semibold text-primary
-                    hover:text-accent transition-colors duration-120
-                  "
-                >
-                  {job.company}
-                </a>
-                <div className="font-mono text-[11px] text-muted flex flex-wrap gap-x-3 gap-y-0.5 shrink-0">
-                  <span>{job.title}</span>
-                  <span className="text-border select-none">·</span>
-                  <span>{job.range}</span>
-                  <span className="text-border select-none">·</span>
-                  <span>{job.location}</span>
-                </div>
-              </div>
-
-              {/* Bullet list */}
-              <ul className="space-y-2.5 pl-0">
-                {job.bullets.map((b, i) => (
-                  <li
-                    key={i}
-                    className="
-                      relative pl-4 text-[14px] text-secondary leading-[1.75]
-                      before:content-['–'] before:absolute before:left-0
-                      before:text-border-muted before:select-none
-                    "
+            {/* ── Header row ── */}
+            <div className="timeline-header">
+              <a
+                href={job.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="timeline-company"
+              >
+                {job.company}
+                {job.current && (
+                  <span
+                    style={{
+                      display: "inline-block",
+                      marginLeft: "8px",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "10px",
+                      color: "var(--accent)",
+                      background: "var(--accent-dim)",
+                      padding: "1px 6px",
+                      borderRadius: "2px",
+                      verticalAlign: "middle",
+                      fontWeight: 400,
+                      letterSpacing: "0.06em",
+                    }}
                   >
-                    {b}
-                  </li>
-                ))}
-              </ul>
+                    current
+                  </span>
+                )}
+              </a>
+
+              <div className="timeline-meta">
+                <span>{job.title}</span>
+                <span className="timeline-meta-sep">·</span>
+                <span>{job.range}</span>
+                <span className="timeline-meta-sep">·</span>
+                <span>{job.location}</span>
+              </div>
             </div>
-          ))}
-        </div>
+
+            {/* ── Bullet list ── */}
+            <ul className="timeline-bullets">
+              {job.bullets.map((b, i) => (
+                <li key={i} className="timeline-bullet">
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </SectionLabel>
   );
