@@ -11,57 +11,51 @@ const SOCIALS = [
 export default function Contact() {
   return (
     <SectionLabel label="contact" id="contact">
-      <div className="narrow-container">
+      {/*
+       * Two-column on desktop: prose+email on left, social links on right.
+       * Previously constrained to narrow-container (560px) — now full width
+       * of the layout-container so the right column has space to breathe.
+       */}
+      <div className="contact-layout">
 
-        <h2 className="font-sans text-[28px] md:text-[32px] font-bold text-primary tracking-tight leading-tight">
-          Let&apos;s talk systems.
-        </h2>
+        {/* ── Left: heading + paragraph + email ── */}
+        <div className="contact-left">
+          <h2 className="contact-heading">Let&apos;s talk systems.</h2>
 
-        <p className="font-sans text-[15px] text-secondary leading-[1.8] mt-4 contact-p">
-          Open to infra, data engineering, and ML platform roles.
-          Prefer async — email first, calls by arrangement.
-        </p>
+          <p className="contact-body">
+            Open to infra, data engineering, and ML platform roles.
+            Prefer async — email first, calls by arrangement.
+          </p>
 
-        {/* Email */}
-        <div className="mt-8">
           <a
             href="mailto:prathamagrawal1205@gmail.com"
-            className="
-              font-mono text-[14px] text-accent
-              hover:text-accent-hover
-              underline underline-offset-4 decoration-accent/30
-              hover:decoration-accent
-              transition-colors duration-150
-            "
+            className="contact-email"
           >
             prathamagrawal1205@gmail.com
           </a>
         </div>
 
-        {/* Divider */}
-        <hr className="rule mt-10 mb-7" />
-
-        {/* Social links */}
-        <div className="flex flex-wrap gap-x-6 gap-y-3">
-          {SOCIALS.map((s, i) => (
-            <span key={s.name} className="flex items-center gap-6">
-              <a
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-[12px] text-secondary hover:text-accent transition-colors duration-120"
-              >
-                {s.name}
-              </a>
-              {/* Dot separator between links — except last */}
-              {i < SOCIALS.length - 1 && (
-                <span className="text-border select-none font-mono text-[10px]" aria-hidden="true">
-                  ·
-                </span>
-              )}
-            </span>
-          ))}
+        {/* ── Right: social links ── */}
+        <div className="contact-right">
+          <p className="contact-social-label">find me on</p>
+          <nav aria-label="Social links">
+            <ul className="contact-social-list" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {SOCIALS.map((s) => (
+                <li key={s.name}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-social-link"
+                  >
+                    {s.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
+
       </div>
     </SectionLabel>
   );

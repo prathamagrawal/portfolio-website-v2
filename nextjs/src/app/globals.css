@@ -719,3 +719,157 @@ a.item-card-title:hover { color: var(--accent); }
   transition: color var(--transition-fast);
 }
 a.pub-title:hover { color: var(--accent); }
+
+/* ─── Contact Section ────────────────────────────────────────────── */
+
+/* Two-column layout on desktop: prose left, socials right */
+.contact-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+@media (min-width: 768px) {
+  .contact-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 5rem;
+  }
+  .contact-left  { flex: 1 1 0%; min-width: 0; }
+  .contact-right { flex: 0 0 220px; }
+}
+
+.contact-heading {
+  font-family: var(--font-sans);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.contact-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 420px;
+  margin-bottom: 28px;
+}
+
+/* Email CTA — the primary action in this section */
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(56, 139, 253, 0.3);
+  padding-bottom: 2px;
+  transition: color var(--transition-fast),
+              border-bottom-color var(--transition-fast);
+}
+.contact-email:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent);
+}
+
+/* Social links — vertical list on right column */
+.contact-social-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.contact-social-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* On mobile socials go horizontal */
+@media (max-width: 767px) {
+  .contact-social-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+}
+
+.contact-social-link {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--transition-fast);
+}
+.contact-social-link::after {
+  content: "↗";
+  font-size: 10px;
+  color: var(--text-muted);
+  transition: color var(--transition-fast),
+              transform var(--transition-fast);
+  display: inline-block;
+}
+.contact-social-link:hover {
+  color: var(--accent);
+}
+.contact-social-link:hover::after {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────── */
+.footer-bar {
+  padding-top: 32px;
+  padding-bottom: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (min-width: 640px) {
+  .footer-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.footer-credit {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.footer-credit a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.footer-credit a:hover { color: var(--accent); }
+
+.footer-stack {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-stack-sep {
+  color: var(--border);
+  user-select: none;
+}
