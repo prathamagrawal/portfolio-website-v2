@@ -65,12 +65,14 @@ export default function Hero() {
         {/* ── Left Column: Headline & Position ── */}
         <div className="hero-left" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
 
-          {/* Status badge */}
+          {/* Status badge — bold, high-contrast systems chip */}
           <div className="hero-status-pill">
-            <span className="hero-pulse-dot" aria-hidden="true" />
-            <span className="hero-status-text">
-              pratham agrawal · systems &amp; data infra
-            </span>
+            <div className="hero-status-name-group">
+              <span className="hero-pulse-dot" aria-hidden="true" />
+              <span className="hero-status-name">pratham agrawal</span>
+            </div>
+            <span className="hero-status-sep" aria-hidden="true">/</span>
+            <span className="hero-status-role">systems &amp; data infra</span>
           </div>
 
           {/* Clean, balanced headline */}

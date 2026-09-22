@@ -1061,28 +1061,65 @@ a.pub-title:hover { color: var(--accent); }
 .hero-status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px 12px;
+  gap: 10px;
+  padding: 6px 14px 6px 12px;
   border-radius: 9999px;
-  background-color: rgba(22, 27, 34, 0.8);
-  border: 1px solid var(--border);
+  background: rgba(22, 27, 34, 0.95);
+  border: 1px solid rgba(56, 139, 253, 0.35);
+  box-shadow: 0 0 20px -4px rgba(56, 139, 253, 0.22),
+              0 4px 12px rgba(0, 0, 0, 0.4);
   margin-bottom: 24px;
+  transition: all var(--transition-fast);
+}
+.hero-status-pill:hover {
+  border-color: rgba(56, 139, 253, 0.6);
+  box-shadow: 0 0 24px -2px rgba(56, 139, 253, 0.35),
+              0 4px 16px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.hero-status-name-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .hero-pulse-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: #3fb950;
-  box-shadow: 0 0 8px #3fb950;
+  box-shadow: 0 0 10px #3fb950, 0 0 2px #fff;
   display: inline-block;
+  flex-shrink: 0;
 }
 
-.hero-status-text {
+.hero-status-name {
   font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-secondary);
-  letter-spacing: 0.04em;
+  font-size: 13px;
+  font-weight: 700;
+  color: #f0f6fc;
+  letter-spacing: -0.01em;
+}
+
+.hero-status-sep {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(56, 139, 253, 0.6);
+  user-select: none;
+}
+
+.hero-status-role {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: #58a6ff;
+  background: rgba(56, 139, 253, 0.12);
+  border: 1px solid rgba(56, 139, 253, 0.25);
+  padding: 2px 9px;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
 }
 
 .hero-headline {
