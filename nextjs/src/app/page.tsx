@@ -17,7 +17,6 @@ import PersonalHero from "@/components/personal/PersonalHero";
 import TrainingSection from "@/components/personal/TrainingSection";
 import BikingSection from "@/components/personal/BikingSection";
 import SportsSection from "@/components/personal/SportsSection";
-import TravelSection from "@/components/personal/TravelSection";
 import PersonalContact from "@/components/personal/PersonalContact";
 
 function PortfolioContent() {
@@ -49,7 +48,6 @@ function PortfolioContent() {
             <TrainingSection />
             <BikingSection />
             <SportsSection />
-            <TravelSection />
             <PersonalContact />
           </>
         )}

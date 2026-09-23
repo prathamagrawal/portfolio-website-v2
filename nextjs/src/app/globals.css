@@ -1259,6 +1259,11 @@ a.pub-title:hover { color: var(--accent); }
   background: rgba(56, 139, 253, 0.12);
   border-color: rgba(56, 139, 253, 0.25);
 }
+[data-mode="personal"] .hero-status-role {
+  color: #5A3825;
+  background: rgba(90, 56, 37, 0.08);
+  border-color: rgba(90, 56, 37, 0.22);
+}
 
 .hero-headline {
   font-family: var(--font-sans);
@@ -1640,4 +1645,191 @@ a.pub-title:hover { color: var(--accent); }
   font-size: 13.5px;
   line-height: 1.75;
   color: var(--text-secondary);
+}
+
+/* Training Section — Banner + Photo Cards */
+.training-banner {
+  width: 100%;
+  height: 280px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 32px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.training-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.training-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(13, 17, 23, 0.72) 0%,
+    rgba(13, 17, 23, 0.10) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 28px;
+}
+
+[data-mode="personal"] .training-banner-overlay {
+  background: linear-gradient(
+    to right,
+    rgba(244, 239, 234, 0.72) 0%,
+    rgba(244, 239, 234, 0.10) 100%
+  );
+}
+
+.training-banner-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.training-banner-text {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.training-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 400ms ease;
+}
+
+.expedition-card:hover .training-photo-img {
+  transform: scale(1.03);
+}
+
+/* Bike Section — Video/Image Banner */
+.bike-banner {
+  width: 100%;
+  height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 32px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.bike-banner-video,
+.bike-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+
+.bike-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(13, 17, 23, 0.80) 0%,
+    rgba(13, 17, 23, 0.10) 60%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 28px;
+}
+
+[data-mode="personal"] .bike-banner-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(25, 18, 12, 0.88) 0%,
+    rgba(25, 18, 12, 0.35) 40%,
+    rgba(25, 18, 12, 0.0) 75%
+  );
+}
+
+.bike-banner-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #F4EFEA;
+  opacity: 0.85;
+  margin-bottom: 4px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.bike-banner-text {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+[data-mode="personal"] .bike-banner-label {
+  color: #F4EFEA;
+  opacity: 0.9;
+}
+
+[data-mode="personal"] .bike-banner-text {
+  color: #FFFFFF;
+}
+
+/* Adventure Banner — Ambient Backdrop Showcase */
+.adventure-banner {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 32px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+}
+
+@media (max-width: 768px) {
+  .adventure-banner {
+    height: 320px;
+  }
+}
+
+.adventure-backdrop {
+  position: absolute;
+  inset: -30px;
+  background-image: url('/leopard.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  filter: blur(28px) brightness(0.65) saturate(1.1);
+  transform: scale(1.12);
+  opacity: 0.85;
+}
+
+[data-mode="personal"] .adventure-backdrop {
+  filter: blur(28px) brightness(0.78) saturate(1.15);
+  opacity: 0.75;
+}
+
+.adventure-img-main {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.45));
 }

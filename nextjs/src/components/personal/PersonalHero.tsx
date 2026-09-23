@@ -1,11 +1,11 @@
 "use client";
 
 const PHYSICAL_METRICS = [
-  { value: "4x / wk",   label: "lifting split consistency", pct: 88 },
-  { value: "120+ km",   label: "longest single ride",       pct: 95 },
-  { value: "5+",        label: "sports actively played",    pct: 75 },
-  { value: "3,200m",    label: "peak trail trek altitude",  pct: 85 },
-  { value: "daily",     label: "mobility & active recovery",pct: 100 },
+  { value: "5x / wk",  label: "lifting split consistency", pct: 92 },
+  { value: "150+ km",  label: "longest single ride",       pct: 95 },
+  { value: "3+",       label: "sports actively played",    pct: 70 },
+  { value: "daily",    label: "mobility & active recovery",pct: 100 },
+  { value: "queued",   label: "skydive · scuba diving",    pct: 8 },
 ];
 
 export default function PersonalHero() {
@@ -30,16 +30,16 @@ export default function PersonalHero() {
 
           {/* Headline */}
           <h1 className="hero-headline">
-            Outside the terminal.<br />
+            The version of me<br />
             <span className="hero-headline-highlight" style={{ background: "linear-gradient(120deg, #9B5226 0%, #D97736 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              In motion
-            </span> &amp; on the trail.
+              that doesn&apos;t ship code.
+            </span>
           </h1>
 
           {/* Lead description */}
           <p className="hero-lead-text">
-            Strength training, endurance cycling, competitive sports, and high-altitude treks.
-            The physical disciplines and recovery systems that keep the mental ones sharp.
+            I&apos;m usually in the gym, on the bike, or somewhere with bad cell reception.
+            This is that side.
           </p>
 
           {/* Action links */}

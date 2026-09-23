@@ -2,61 +2,81 @@ import SectionLabel from "../SectionLabel";
 
 const TRAINING_CARDS = [
   {
+    title: "The Split",
+    subtitle: "6-DAY CUSTOM ARCHITECTURE",
+    metrics: [{ val: "6 days", label: "weekly frequency" }, { val: "90+ min", label: "per session" }],
+    tags: ["Back", "Chest", "Arms", "Shoulders", "Core", "Legs"],
+    img: "/gym-1.png",
+  },
+  {
     title: "Progressive Overload",
-    subtitle: "DATA-DRIVEN STRENGTH",
-    metrics: [{ val: "4x", label: "weekly splits" }, { val: "RPE 8", label: "target load" }],
-    desc: "Treating strength training like an adaptive system. Focus on progressive compound lifts, recorded load volume, and calibrated recovery. Consistency over extreme intensity.",
-    tags: ["Squat", "Deadlift", "Bench Press", "Overhead Press"],
+    subtitle: "LOAD MANAGEMENT",
+    metrics: [{ val: "5x / wk", label: "training days" }, { val: "linear", label: "progression model" }],
+    tags: ["Volume Tracking", "Compound Lifts", "Overload", "Consistency"],
+    img: "/gym-2.png",
   },
   {
-    title: "Split Architecture",
-    subtitle: "PUSH / PULL / LEGS",
-    metrics: [{ val: "75 min", label: "avg session" }, { val: "2x", label: "frequency/muscle" }],
-    desc: "Structured split prioritizing joint longevity, posterior chain resilience, and compound volume. Balanced with mobility work to counter long hours sitting at workstations.",
-    tags: ["Hypertrophy", "Posterior Chain", "Rotator Cuff", "Mobility"],
-  },
-  {
-    title: "Recovery Discipline",
-    subtitle: "RESTORATION & SLEEP",
-    metrics: [{ val: "7.5h+", label: "sleep target" }, { val: "100%", label: "hydration rate" }],
-    desc: "You don't grow in the gym; you grow in recovery. Strict sleep hygiene, protein targets, and active deload cycles to maintain year-round peak physical output.",
-    tags: ["Sleep Quality", "Nutrition", "Deload Protocol", "Sauna"],
+    title: "Recovery & Ritual",
+    subtitle: "POST-SESSION PROTOCOL",
+    metrics: [{ val: "10+ hrs", label: "sleep target" }, { val: "ice bath", label: "active recovery" }],
+    tags: ["Sleep", "Ice Bath", "Coffee", "Active Recovery"],
+    img: "/gym-3.png",
   },
 ];
 
 export default function TrainingSection() {
   return (
     <SectionLabel label="training & gym" id="training">
+
+      {/* ── Full-width banner: gym-4 ── */}
+      <div className="training-banner">
+        <img
+          src="/gym-4.png"
+          alt="Training session"
+          className="training-banner-img"
+        />
+        <div className="training-banner-overlay">
+          <span className="training-banner-label">field log / gym</span>
+          <span className="training-banner-text">5 days a week. 90 minutes minimum. No shortcuts.</span>
+        </div>
+      </div>
+
+      {/* ── 3 photo cards ── */}
       <div className="card-grid-3">
         {TRAINING_CARDS.map((card) => (
-          <div key={card.title} className="item-card">
-            <div>
-              <span className="project-category-tag" style={{ fontSize: "10px", marginBottom: "4px" }}>
-                {card.subtitle}
-              </span>
-              <h3 className="item-card-title" style={{ fontSize: "16px", marginBottom: "10px" }}>
-                {card.title}
-              </h3>
+          <div key={card.title} className="expedition-card">
 
-              {/* Metrics */}
-              <div style={{ display: "flex", gap: "6px", marginBottom: "12px" }}>
+            {/* Photo */}
+            <div className="expedition-media">
+              <img
+                src={card.img}
+                alt={card.title}
+                className="training-photo-img"
+              />
+              <div className="expedition-badge-bar">
                 {card.metrics.map((m) => (
-                  <span key={m.label} className="tag" style={{ background: "var(--accent-dim)", color: "var(--accent)", fontWeight: 600 }}>
+                  <span key={m.label} className="tag" style={{ background: "var(--accent-dim)", color: "var(--accent)", fontWeight: 600, backdropFilter: "blur(6px)" }}>
                     {m.val} <span style={{ opacity: 0.7, fontWeight: 400 }}>· {m.label}</span>
                   </span>
                 ))}
               </div>
-
-              <p className="item-card-desc">
-                {card.desc}
-              </p>
             </div>
 
-            <div className="item-card-tags" style={{ marginTop: "12px" }}>
-              {card.tags.map((t) => (
-                <span key={t} className="tag">{t}</span>
-              ))}
+            {/* Body — title, subtitle, tags only */}
+            <div className="expedition-body">
+              <span className="project-category-tag" style={{ fontSize: "10px" }}>
+                {card.subtitle}
+              </span>
+              <h3 className="expedition-title">
+                {card.title}
+              </h3>
+              <div className="item-card-tags">
+                {card.tags.map((t) => (
+                  <span key={t} className="tag">{t}</span>
+                ))}
+              </div>
             </div>
+
           </div>
         ))}
       </div>

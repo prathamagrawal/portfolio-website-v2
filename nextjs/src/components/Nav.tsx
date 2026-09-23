@@ -16,7 +16,6 @@ const PERSONAL_LINKS = [
   { name: "Training",    href: "#training" },
   { name: "Biking",      href: "#biking" },
   { name: "Sports",      href: "#sports" },
-  { name: "Expeditions", href: "#expeditions" },
   { name: "Connect",     href: "#contact" },
 ];
 
