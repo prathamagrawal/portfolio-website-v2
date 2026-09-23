@@ -2,47 +2,45 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import ModeToggle from "./ModeToggle";
+import { usePortfolioMode } from "@/context/ModeContext";
 
-const NAV_LINKS = [
-  { name: "About",      href: "#about"    },
-  { name: "Experience", href: "#jobs"     },
+const TECH_LINKS = [
+  { name: "About",      href: "#about" },
+  { name: "Experience", href: "#jobs" },
   { name: "Work",       href: "#projects" },
-  { name: "Contact",    href: "#contact"  },
+  { name: "Contact",    href: "#contact" },
 ];
 
-function useScrollDirection() {
-  const [hidden, setHidden] = useState(false);
-  const lastY = useRef(0);
-
-  useEffect(() => {
-    const handler = () => {
-      const y = window.scrollY;
-      if (y < 80) { setHidden(false); return; }
-      setHidden(y > lastY.current && y - lastY.current > 4);
-      lastY.current = y;
-    };
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
-
-  return hidden;
-}
+const PERSONAL_LINKS = [
+  { name: "Training",    href: "#training" },
+  { name: "Biking",      href: "#biking" },
+  { name: "Sports",      href: "#sports" },
+  { name: "Expeditions", href: "#expeditions" },
+  { name: "Connect",     href: "#contact" },
+];
 
 export default function Nav() {
-  const hidden = useScrollDirection();
+  const { mode } = usePortfolioMode();
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  const navLinks = mode === "personal" ? PERSONAL_LINKS : TECH_LINKS;
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [open]);
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      lastScrollY.current = currentScrollY;
     };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -55,38 +53,42 @@ export default function Nav() {
           right: 0,
           zIndex: 50,
           height: "64px",
-          backgroundColor: "rgba(13,17,23,0.9)",
-          backdropFilter: "blur(8px)",
+          backgroundColor: mode === "personal" ? "rgba(244, 239, 234, 0.92)" : "rgba(13,17,23,0.9)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
           borderBottom: "1px solid var(--border)",
           transform: hidden ? "translateY(-100%)" : "translateY(0)",
-          transition: "transform 300ms ease",
+          transition: "transform 300ms ease, background-color 300ms ease",
         }}
       >
-        {/* Inner container — uses .layout-container so it centers at 1100px */}
         <div
           className="layout-container"
-          style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+          style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}
         >
-          <Link
-            href="/"
-            aria-label="Home"
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "15px",
-              fontWeight: 600,
-              color: "var(--accent)",
-              textDecoration: "none",
-              transition: "color 120ms ease",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-hover)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--accent)")}
-          >
-            PA
-          </Link>
+          {/* Left: Logo & Mode Toggle */}
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <Link
+              href="/"
+              aria-label="Home"
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "15px",
+                fontWeight: 700,
+                color: "var(--accent)",
+                textDecoration: "none",
+                transition: "color 120ms ease",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              PA
+            </Link>
+
+            <ModeToggle />
+          </div>
 
           {/* Desktop links */}
-          <div className="hidden md:flex" style={{ alignItems: "center", gap: "2rem" }}>
-            {NAV_LINKS.map((l) => (
+          <div className="hidden md:flex" style={{ alignItems: "center", gap: "1.75rem" }}>
+            {navLinks.map((l) => (
               <Link
                 key={l.name}
                 href={l.href}
@@ -103,112 +105,128 @@ export default function Nav() {
                 {l.name}
               </Link>
             ))}
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "12px",
-                color: "var(--accent)",
-                border: "1px solid var(--accent)",
-                padding: "5px 12px",
-                borderRadius: "4px",
-                textDecoration: "none",
-                transition: "background-color 150ms ease",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--accent-dim)")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-            >
-              Resume ↗
-            </a>
+
+            {mode === "technical" && (
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "12px",
+                  color: "var(--accent)",
+                  border: "1px solid var(--accent)",
+                  padding: "5px 12px",
+                  borderRadius: "4px",
+                  textDecoration: "none",
+                  transition: "background-color 150ms ease",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--accent-dim)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+              >
+                Resume ↗
+              </a>
+            )}
           </div>
 
           {/* Mobile hamburger */}
           <button
             className="md:hidden"
             onClick={() => setOpen(true)}
-            aria-label="Open menu"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", display: "flex", flexDirection: "column", gap: "5px" }}
+            aria-label="Open navigation menu"
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              color: "var(--text-secondary)",
+              padding: "4px",
+            }}
           >
-            <span style={{ display: "block", width: "20px", height: "1.5px", backgroundColor: "var(--text-secondary)", borderRadius: "2px" }} />
-            <span style={{ display: "block", width: "20px", height: "1.5px", backgroundColor: "var(--text-secondary)", borderRadius: "2px" }} />
-            <span style={{ display: "block", width: "13px", height: "1.5px", backgroundColor: "var(--text-secondary)", borderRadius: "2px" }} />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
           </button>
         </div>
       </header>
 
-      {/* Mobile overlay */}
-      <div
-        id="mobile-menu"
-        aria-hidden={!open}
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 60,
-          backgroundColor: "var(--bg)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: open ? 1 : 0,
-          pointerEvents: open ? "auto" : "none",
-          transition: "opacity 200ms ease",
-        }}
-      >
-        <button
+      {/* Mobile menu overlay */}
+      {open && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
           style={{
-            position: "absolute",
-            top: "20px",
-            right: "24px",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            color: "var(--text-secondary)",
-            padding: "8px",
+            position: "fixed",
+            inset: 0,
+            zIndex: 100,
+            backgroundColor: "var(--bg)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "2rem",
           }}
-          onClick={() => setOpen(false)}
-          aria-label="Close menu"
         >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <line x1="1" y1="1" x2="17" y2="17" />
-            <line x1="17" y1="1" x2="1" y2="17" />
-          </svg>
-        </button>
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "24px",
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              color: "var(--text-secondary)",
+            }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
 
-        <nav style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "2rem" }}>
-          {NAV_LINKS.map((l) => (
+          {navLinks.map((l) => (
             <Link
               key={l.name}
               href={l.href}
               onClick={() => setOpen(false)}
-              style={{ fontFamily: "var(--font-sans)", fontSize: "22px", color: "var(--text-secondary)", textDecoration: "none" }}
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "20px",
+                fontWeight: 600,
+                color: "var(--text-primary)",
+                textDecoration: "none",
+              }}
             >
               {l.name}
             </Link>
           ))}
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setOpen(false)}
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "14px",
-              color: "var(--accent)",
-              border: "1px solid var(--accent)",
-              padding: "8px 20px",
-              borderRadius: "4px",
-              textDecoration: "none",
-              marginTop: "8px",
-            }}
-          >
-            Resume ↗
-          </a>
-        </nav>
-      </div>
+
+          {mode === "technical" && (
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "14px",
+                color: "var(--accent)",
+                border: "1px solid var(--accent)",
+                padding: "8px 24px",
+                borderRadius: "4px",
+                textDecoration: "none",
+                marginTop: "1rem",
+              }}
+            >
+              Resume ↗
+            </a>
+          )}
+        </div>
+      )}
     </>
   );
 }
