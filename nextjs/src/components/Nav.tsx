@@ -115,7 +115,7 @@ export default function Nav() {
               </Link>
             ))}
 
-            {mode === "technical" && (
+            {mode === "technical" ? (
               <a
                 href="/resume.pdf"
                 target="_blank"
@@ -134,6 +134,26 @@ export default function Nav() {
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
               >
                 Resume ↗
+              </a>
+            ) : (
+              <a
+                href="https://www.instagram.com/prathamonthemove/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "12px",
+                  color: "var(--accent)",
+                  border: "1px solid var(--accent)",
+                  padding: "5px 12px",
+                  borderRadius: "4px",
+                  textDecoration: "none",
+                  transition: "background-color 150ms ease",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--accent-dim)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+              >
+                Instagram ↗
               </a>
             )}
           </div>
@@ -214,7 +234,7 @@ export default function Nav() {
             </Link>
           ))}
 
-          {mode === "technical" && (
+          {mode === "technical" ? (
             <a
               href="/resume.pdf"
               target="_blank"
@@ -232,6 +252,25 @@ export default function Nav() {
               }}
             >
               Resume ↗
+            </a>
+          ) : (
+            <a
+              href="https://www.instagram.com/prathamonthemove/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "14px",
+                color: "var(--accent)",
+                border: "1px solid var(--accent)",
+                padding: "8px 24px",
+                borderRadius: "4px",
+                textDecoration: "none",
+                marginTop: "1rem",
+              }}
+            >
+              Instagram ↗
             </a>
           )}
         </div>
