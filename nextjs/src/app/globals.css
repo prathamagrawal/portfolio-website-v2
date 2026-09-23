@@ -1171,17 +1171,35 @@ a.pub-title:hover { color: var(--accent); }
   gap: 10px;
   padding: 6px 14px 6px 12px;
   border-radius: 9999px;
-  background: rgba(22, 27, 34, 0.95);
-  border: 1px solid rgba(56, 139, 253, 0.35);
-  box-shadow: 0 0 20px -4px rgba(56, 139, 253, 0.22),
-              0 4px 12px rgba(0, 0, 0, 0.4);
+  background: var(--surface);
+  border: 1px solid var(--border);
   margin-bottom: 24px;
   transition: all var(--transition-fast);
 }
-.hero-status-pill:hover {
+
+/* In technical dark mode */
+:not([data-mode="personal"]) .hero-status-pill {
+  background: rgba(22, 27, 34, 0.95);
+  border-color: rgba(56, 139, 253, 0.35);
+  box-shadow: 0 0 20px -4px rgba(56, 139, 253, 0.22),
+              0 4px 12px rgba(0, 0, 0, 0.4);
+}
+:not([data-mode="personal"]) .hero-status-pill:hover {
   border-color: rgba(56, 139, 253, 0.6);
   box-shadow: 0 0 24px -2px rgba(56, 139, 253, 0.35),
               0 4px 16px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+/* In personal beige/brown mode */
+[data-mode="personal"] .hero-status-pill {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 2px 10px rgba(70, 50, 30, 0.08);
+}
+[data-mode="personal"] .hero-status-pill:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(147, 75, 32, 0.16);
   transform: translateY(-1px);
 }
 
@@ -1200,12 +1218,16 @@ a.pub-title:hover { color: var(--accent); }
   display: inline-block;
   flex-shrink: 0;
 }
+[data-mode="personal"] .hero-pulse-dot {
+  background-color: #934B20;
+  box-shadow: 0 0 10px #934B20, 0 0 2px #fff;
+}
 
 .hero-status-name {
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 700;
-  color: #f0f6fc;
+  color: var(--text-primary);
   letter-spacing: -0.01em;
 }
 
@@ -1213,20 +1235,29 @@ a.pub-title:hover { color: var(--accent); }
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 600;
-  color: rgba(56, 139, 253, 0.6);
+  color: var(--text-muted);
   user-select: none;
+}
+:not([data-mode="personal"]) .hero-status-sep {
+  color: rgba(56, 139, 253, 0.6);
 }
 
 .hero-status-role {
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 600;
-  color: #58a6ff;
-  background: rgba(56, 139, 253, 0.12);
-  border: 1px solid rgba(56, 139, 253, 0.25);
-  padding: 2px 9px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid var(--border);
+  padding: 2px 10px;
   border-radius: 9999px;
   letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+:not([data-mode="personal"]) .hero-status-role {
+  color: #58a6ff;
+  background: rgba(56, 139, 253, 0.12);
+  border-color: rgba(56, 139, 253, 0.25);
 }
 
 .hero-headline {
@@ -1411,24 +1442,82 @@ a.pub-title:hover { color: var(--accent); }
 [data-mode="personal"],
 .theme-personal {
   --bg:           #F4EFEA;
-  --surface:      #FAF6F0;
-  --surface-2:    #ECE3D8;
-  --border:       #D9C9BA;
-  --border-muted: #E6D8CA;
-  --text-primary: #271E16;
-  --text-secondary: #655446;
-  --text-muted:   #8F7C6E;
-  --accent:       #9B5226;
-  --accent-hover: #7D3E18;
-  --accent-dim:   rgba(155, 82, 38, 0.12);
-  --accent-dim-hover: rgba(155, 82, 38, 0.20);
-  --metric:       #B85A1E;
+  --surface:      #FFFFFF;
+  --surface-2:    #EFE7DE;
+  --border:       #D5C4B4;
+  --border-muted: #E4D7CA;
+  --text-primary: #251B12;
+  --text-secondary: #5E4D3F;
+  --text-muted:   #8C7767;
+  --accent:       #934B20;
+  --accent-hover: #753713;
+  --accent-dim:   rgba(147, 75, 32, 0.10);
+  --accent-dim-hover: rgba(147, 75, 32, 0.18);
+  --metric:       #B0541C;
 }
 
 [data-mode="personal"] body,
 .theme-personal body {
   background-color: var(--bg);
   color: var(--text-primary);
+}
+
+/* Personal Mode Overrides for Cards, Buttons and Telemetry Panels */
+[data-mode="personal"] .hero-console-box {
+  background-color: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 16px 36px -8px rgba(70, 50, 30, 0.10),
+              0 0 0 1px var(--border);
+}
+[data-mode="personal"] .hero-console-header,
+[data-mode="personal"] .hero-console-footer {
+  background-color: var(--surface-2);
+  border-color: var(--border);
+}
+[data-mode="personal"] .hero-metric-bar-bg {
+  background-color: var(--border-muted);
+}
+[data-mode="personal"] .hero-btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 2px 10px rgba(147, 75, 32, 0.25);
+}
+[data-mode="personal"] .hero-btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #ffffff;
+}
+[data-mode="personal"] .hero-btn-secondary {
+  border-color: var(--border);
+  color: var(--text-secondary);
+  background-color: var(--surface);
+}
+[data-mode="personal"] .hero-btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+[data-mode="personal"] .hero-metric-row:hover {
+  background-color: rgba(147, 75, 32, 0.05);
+}
+[data-mode="personal"] .item-card {
+  background-color: var(--surface);
+  border-color: var(--border);
+  border-top-color: var(--border);
+  box-shadow: 0 2px 10px rgba(70, 50, 30, 0.06);
+}
+[data-mode="personal"] .item-card:hover {
+  border-color: var(--accent);
+  border-top-color: var(--accent);
+  box-shadow: 0 8px 24px -4px rgba(70, 50, 30, 0.12);
+}
+[data-mode="personal"] .contact-spec-panel {
+  background-color: var(--surface);
+  border-color: var(--border);
+}
+[data-mode="personal"] .contact-spec-header {
+  background-color: var(--surface-2);
+  border-color: var(--border);
 }
 
 /* ─── Mode Toggle Component ──────────────────────────────────────── */

@@ -63,26 +63,36 @@ export default function Nav() {
       >
         <div
           className="layout-container"
-          style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}
+          style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", position: "relative" }}
         >
-          {/* Left: Logo & Mode Toggle */}
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <Link
-              href="/"
-              aria-label="Home"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "15px",
-                fontWeight: 700,
-                color: "var(--accent)",
-                textDecoration: "none",
-                transition: "color 120ms ease",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              PA
-            </Link>
+          {/* Left: Logo */}
+          <Link
+            href="/"
+            aria-label="Home"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "15px",
+              fontWeight: 700,
+              color: "var(--accent)",
+              textDecoration: "none",
+              transition: "color 120ms ease",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            PA
+          </Link>
 
+          {/* Center: Mode Toggle — positioned dead center */}
+          <div
+            style={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+              display: "flex",
+              alignItems: "center",
+              zIndex: 10,
+            }}
+          >
             <ModeToggle />
           </div>
 

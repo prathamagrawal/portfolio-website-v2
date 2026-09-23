@@ -19,11 +19,11 @@ export default function PersonalHero() {
           {/* Status badge */}
           <div className="hero-status-pill">
             <div className="hero-status-name-group">
-              <span className="hero-pulse-dot" style={{ backgroundColor: "#9B5226", boxShadow: "0 0 10px #9B5226" }} aria-hidden="true" />
+              <span className="hero-pulse-dot" aria-hidden="true" />
               <span className="hero-status-name">Pratham Agrawal</span>
             </div>
             <span className="hero-status-sep" aria-hidden="true">/</span>
-            <span className="hero-status-role" style={{ color: "var(--accent)", background: "var(--accent-dim)", borderColor: "var(--border)" }}>
+            <span className="hero-status-role">
               offline &amp; in motion
             </span>
           </div>
