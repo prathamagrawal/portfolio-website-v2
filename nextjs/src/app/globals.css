@@ -151,7 +151,7 @@ a {
 /* Hero two-column grid */
 .hero-grid {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 2.5rem;
   align-items: flex-start;
 }
