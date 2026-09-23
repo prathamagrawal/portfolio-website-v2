@@ -1,4 +1,4 @@
-const STACK = ["Next.js", "Tailwind CSS v4", "IBM Plex Mono"];
+const STACK = ["Next.js", "Tailwind CSS v4"];
 
 export default function Footer() {
   return (
