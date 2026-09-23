@@ -69,7 +69,7 @@ export default function Hero() {
           <div className="hero-status-pill">
             <div className="hero-status-name-group">
               <span className="hero-pulse-dot" aria-hidden="true" />
-              <span className="hero-status-name">pratham agrawal</span>
+              <span className="hero-status-name">Pratham Agrawal</span>
             </div>
             <span className="hero-status-sep" aria-hidden="true">/</span>
             <span className="hero-status-role">systems &amp; data infra</span>
@@ -85,7 +85,6 @@ export default function Hero() {
           <p className="hero-lead-text">
             Building high-throughput data pipelines, distributed storage topologies, and
             LLM-powered automation.{" "}
-            <span style={{ color: "var(--text-primary)", opacity: 0.75 }}>Currently at Affinsys AI.</span>
           </p>
 
           {/* Interactive CTAs */}

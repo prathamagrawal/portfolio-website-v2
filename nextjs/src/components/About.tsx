@@ -95,12 +95,13 @@ export default function About() {
               <Image
                 src="/photo.jpg"
                 alt="Pratham Agrawal"
-                width={240}
-                height={300}
+                width={500}
+                height={500}
+                quality={100}
                 style={{
                   width: "100%",
                   height: "auto",
-                  aspectRatio: "4/5",
+                  aspectRatio: "1/1",
                   objectFit: "cover",
                   objectPosition: "top center",
                   borderRadius: "4px",
