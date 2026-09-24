@@ -1,5 +1,9 @@
+"use client";
+
 import SectionLabel from "../SectionLabel";
 import ScrollReveal from "../ScrollReveal";
+import ImageWithSkeleton from "../ImageWithSkeleton";
+import { useState } from "react";
 
 const TRAINING_CARDS = [
   {
@@ -25,56 +29,77 @@ const TRAINING_CARDS = [
   },
 ];
 
+/** Banner with skeleton */
+function BannerWithSkeleton() {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="training-banner" style={{ position: "relative" }}>
+      {/* Shimmer sits behind the image */}
+      <div className={`skeleton skeleton-dark${loaded ? " skeleton-resolved" : ""}`} />
+      <img
+        src="/gym-4.png"
+        alt="Training session"
+        className={`training-banner-img ${loaded ? "img-loaded" : "img-loading"}`}
+        style={{ position: "relative", zIndex: 2, opacity: loaded ? 1 : 0, transition: "opacity 350ms ease" }}
+        onLoad={() => setLoaded(true)}
+      />
+      <div className="training-banner-overlay" style={{ zIndex: 3 }}>
+        <span className="training-banner-label">field log / gym</span>
+        <span className="training-banner-text">5 days a week. 90 minutes minimum. No shortcuts.</span>
+      </div>
+    </div>
+  );
+}
+
 export default function TrainingSection() {
   return (
     <SectionLabel label="training & gym" id="training">
 
-      {/* ── Full-width banner: gym-4 ── */}
+      {/* ── Full-width banner with skeleton ── */}
       <ScrollReveal duration={650}>
-        <div className="training-banner">
-          <img
-            src="/gym-4.png"
-            alt="Training session"
-            className="training-banner-img"
-          />
-          <div className="training-banner-overlay">
-            <span className="training-banner-label">field log / gym</span>
-            <span className="training-banner-text">5 days a week. 90 minutes minimum. No shortcuts.</span>
-          </div>
-        </div>
+        <BannerWithSkeleton />
       </ScrollReveal>
 
-      {/* ── 3 photo cards ── */}
+      {/* ── 3 photo cards with skeleton + hover micro-interactions ── */}
       <div className="card-grid-3">
         {TRAINING_CARDS.map((card, i) => (
           <ScrollReveal key={card.title} delay={i * 80} style={{ height: "100%" }}>
             <div className="expedition-card" style={{ height: "100%" }}>
 
-              {/* Photo */}
+              {/* Photo with skeleton */}
               <div className="expedition-media">
-                <img
+                <ImageWithSkeleton
                   src={card.img}
                   alt={card.title}
                   className="training-photo-img"
                 />
-                <div className="expedition-badge-bar">
+                <div className="expedition-badge-bar" style={{ zIndex: 3 }}>
                   {card.metrics.map((m) => (
-                    <span key={m.label} className="tag" style={{ background: "var(--accent-dim)", color: "var(--accent)", fontWeight: 600, backdropFilter: "blur(6px)" }}>
-                      {m.val} <span style={{ opacity: 0.7, fontWeight: 400 }}>· {m.label}</span>
+                    <span
+                      key={m.label}
+                      className="tag"
+                      style={{
+                        background: "var(--accent-dim)",
+                        color: "var(--accent)",
+                        fontWeight: 600,
+                        backdropFilter: "blur(6px)",
+                      }}
+                    >
+                      {m.val}{" "}
+                      <span style={{ opacity: 0.7, fontWeight: 400 }}>· {m.label}</span>
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Body — title, subtitle, tags only */}
+              {/* Body */}
               <div className="expedition-body">
                 <span className="project-category-tag" style={{ fontSize: "10px" }}>
                   {card.subtitle}
                 </span>
-                <h3 className="expedition-title">
-                  {card.title}
-                </h3>
-                <div className="item-card-tags">
+                <h3 className="expedition-title">{card.title}</h3>
+                <div className="item-card-tags tags-animated">
                   {card.tags.map((t) => (
                     <span key={t} className="tag">{t}</span>
                   ))}

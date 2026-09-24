@@ -81,7 +81,7 @@ export default function Nav() {
             PA
           </Link>
 
-          {/* Center: Mode Toggle — positioned dead center */}
+          {/* Center: Mode Toggle — positioned dead center on md+, inline on mobile */}
           <div
             style={{
               position: "absolute",
@@ -90,6 +90,9 @@ export default function Nav() {
               display: "flex",
               alignItems: "center",
               zIndex: 10,
+              // On very small screens pull it left a touch so it doesn't
+              // bleed into the hamburger button (22px icon + 8px padding = 30px)
+              maxWidth: "calc(100% - 120px)",
             }}
           >
             <ModeToggle />

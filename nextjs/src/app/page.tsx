@@ -18,18 +18,23 @@ import TrainingSection from "@/components/personal/TrainingSection";
 import BikingSection from "@/components/personal/BikingSection";
 import SportsSection from "@/components/personal/SportsSection";
 import PersonalContact from "@/components/personal/PersonalContact";
+import ModeTransitionLoader from "@/components/ModeTransitionLoader";
+import PageLoader from "@/components/PageLoader";
 
 function PortfolioContent() {
   const { mode } = usePortfolioMode();
 
   return (
     <>
+      <PageLoader />
       <Nav />
       {/*
        * SocialSidebar is stationary all over the page
        * Adapts its colors seamlessly with CSS custom properties
        */}
       <SocialSidebar />
+      {/* Mode switch transition loader — plays on every toggle */}
+      <ModeTransitionLoader />
 
       <main className="layout-container">
         {mode === "technical" ? (

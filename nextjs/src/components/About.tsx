@@ -125,40 +125,23 @@ export default function About() {
         <ScrollReveal direction="right" distance={24} duration={600} delay={120} style={{ width: "100%" }}>
           <div className="about-photo">
             <div className="about-photo-wrap">
-              {/* Decorative offset frame behind photo */}
-              <div
-                aria-hidden="true"
+              <Image
+                src="/photo.jpg"
+                alt="Pratham Agrawal"
+                width={500}
+                height={500}
+                quality={100}
                 style={{
-                  position: "absolute",
-                  top: "10px",
-                  left: "10px",
-                  right: "-10px",
-                  bottom: "-10px",
-                  border: "1px solid var(--border)",
-                  borderRadius: "4px",
-                  zIndex: 0,
+                  width: "100%",
+                  height: "auto",
+                  aspectRatio: "1/1",
+                  objectFit: "cover",
+                  objectPosition: "top center",
+                  borderRadius: "6px",
+                  display: "block",
                 }}
+                priority
               />
-              <div style={{ position: "relative", zIndex: 1, lineHeight: 0 }}>
-                <Image
-                  src="/photo.jpg"
-                  alt="Pratham Agrawal"
-                  width={500}
-                  height={500}
-                  quality={100}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    aspectRatio: "1/1",
-                    objectFit: "cover",
-                    objectPosition: "top center",
-                    borderRadius: "4px",
-                    border: "1px solid var(--border)",
-                    display: "block",
-                  }}
-                  priority
-                />
-              </div>
             </div>
           </div>
         </ScrollReveal>

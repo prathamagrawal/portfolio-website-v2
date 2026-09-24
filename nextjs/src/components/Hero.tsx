@@ -16,16 +16,22 @@ function useTypewriterSequence(
   items: { value: string }[],
   prefersReducedMotion: boolean,
 ) {
-  const [typed,   setTyped]   = useState<string[]>(items.map(() => ""));
-  const [visible, setVisible] = useState<boolean[]>(items.map(() => false));
+  // Start visible immediately — prevents flash of empty console on first paint.
+  // The typewriter effect kicks in only after mount when animations are allowed.
+  const [typed,   setTyped]   = useState<string[]>(items.map((m) => m.value));
+  const [visible, setVisible] = useState<boolean[]>(items.map(() => true));
   const [cursor,  setCursor]  = useState(false);
+  const [didAnimate, setDidAnimate] = useState(false);
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      setTyped(items.map((m) => m.value));
-      setVisible(items.map(() => true));
-      return;
-    }
+    // Only run the typewriter once, and only if animations are allowed
+    if (prefersReducedMotion || didAnimate) return;
+    setDidAnimate(true);
+
+    // Reset to blank so the typewriter can play
+    setTyped(items.map(() => ""));
+    setVisible(items.map(() => false));
+
     const ids: ReturnType<typeof setTimeout>[] = [];
     const t0 = setTimeout(() => {
       setCursor(true);

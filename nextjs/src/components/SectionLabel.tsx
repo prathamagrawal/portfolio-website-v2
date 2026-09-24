@@ -16,23 +16,17 @@ export default function SectionLabel({ label, id, children }: SectionLabelProps)
 
   return (
     <section id={id} className="section-block">
-      {/*
-       * Section Header with orchestrated drawing animation:
-       * 1. ## marker and title slide up softly
-       * 2. The architectural hairline draws across from left to right
-       */}
       <div ref={ref} className="section-header-wrap">
-        <div
-          className="section-heading-group"
+        <h2
+          className="section-title"
           style={{
             opacity: prefersReducedMotion || inView ? 1 : 0,
             transform: prefersReducedMotion || inView ? "translateY(0)" : "translateY(12px)",
             transition: prefersReducedMotion ? "none" : "opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 500ms cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
-          <span className="section-hash" aria-hidden="true">##</span>
-          <h2 className="section-title">{label}</h2>
-        </div>
+          {label}
+        </h2>
 
         <div
           className="section-header-line"
