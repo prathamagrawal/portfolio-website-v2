@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
+import Certifications from "@/components/Certifications";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import OtherProjects from "@/components/OtherProjects";
 import Publications from "@/components/Publications";
@@ -37,6 +38,7 @@ function PortfolioContent() {
             <Hero />
             <About />
             <Experience />
+            <Certifications />
             <FeaturedProjects />
             <OtherProjects />
             <Publications />

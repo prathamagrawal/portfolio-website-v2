@@ -6,10 +6,11 @@ import ModeToggle from "./ModeToggle";
 import { usePortfolioMode } from "@/context/ModeContext";
 
 const TECH_LINKS = [
-  { name: "About",      href: "#about" },
-  { name: "Experience", href: "#jobs" },
-  { name: "Work",       href: "#projects" },
-  { name: "Contact",    href: "#contact" },
+  { name: "About",          href: "#about" },
+  { name: "Experience",     href: "#jobs" },
+  { name: "Certifications", href: "#certifications" },
+  { name: "Work",           href: "#projects" },
+  { name: "Contact",        href: "#contact" },
 ];
 
 const PERSONAL_LINKS = [

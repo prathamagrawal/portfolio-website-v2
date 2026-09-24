@@ -73,6 +73,50 @@ export default function About() {
                   </div>
                 </div>
               ))}
+
+              {/* Verified Cloud Certification Callout */}
+              <div style={{ marginTop: "1.75rem", paddingTop: "1.25rem", borderTop: "1px solid var(--border-muted)" }}>
+                <p className="skills-group-label" style={{ marginBottom: "8px" }}>verified certification</p>
+                <a
+                  href="#certifications"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    padding: "6px 12px",
+                    background: "var(--surface)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "4px",
+                    textDecoration: "none",
+                    transition: "all var(--transition-fast)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--accent)";
+                    e.currentTarget.style.transform = "translateY(-1px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "7px",
+                      height: "7px",
+                      borderRadius: "50%",
+                      backgroundColor: "#3fb950",
+                      boxShadow: "0 0 8px #3fb950",
+                    }}
+                    aria-hidden="true"
+                  />
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", color: "var(--text-primary)", fontWeight: 500 }}>
+                    AWS Certified Data Engineer – Associate
+                  </span>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "var(--metric)" }}>
+                    (DEA-C01) ↓
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </ScrollReveal>

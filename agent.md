@@ -89,8 +89,9 @@ nextjs/
 │   │   ├── SectionLabel.tsx    // Semantic h2 with accent ## marker and drawing rule line
 │   │   ├── ScrollReveal.tsx    // GPU-accelerated lightweight viewport entrance wrapper
 │   │   ├── Hero.tsx            // Technical hero + typewriter telemetry HUD
-│   │   ├── About.tsx           // Systems engineering bio + 500x500 headshot
+│   │   ├── About.tsx           // Systems engineering bio + 500x500 headshot + cert badge
 │   │   ├── Experience.tsx      // Vertical timeline with metrics highlights & breathing node
+│   │   ├── Certifications.tsx  // AWS Certified Data Engineer dossier with Credly verification
 │   │   ├── FeaturedProjects.tsx// Dossier cards with blueprint window frames & impact chips
 │   │   ├── OtherProjects.tsx   // 2x2 grid (.card-grid-2) with no orphan cells
 │   │   ├── Publications.tsx    // 3-col grid (.card-grid-3) with venues and year badges
@@ -109,6 +110,7 @@ nextjs/
 └── public/
     ├── photo.jpg
     ├── resume.pdf
+    ├── aws-certified-data-engineer.png
     ├── mirror-db-architecture.jpeg
     ├── loghive.png
     ├── Clusterbase.png
