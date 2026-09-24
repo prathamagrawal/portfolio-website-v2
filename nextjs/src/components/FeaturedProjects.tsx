@@ -117,6 +117,37 @@ const PROJECTS = [
   },
 ];
 
+const OTHER_PROJECTS = [
+  {
+    title: "IPL Analysis",
+    github: "https://github.com/prathamagrawal/IPL-Analysis",
+    external: "https://www.kaggle.com/datasets/fearsomejockey/ipl-batting-and-bowling-dataset-20182022",
+    tech: ["Python", "Jupyter"],
+    desc: "Data analysis and visualization toolset for answering complex analytical questions about IPL batting and bowling data (2018–2022).",
+  },
+  {
+    title: "Olympics Data Visualization",
+    github: undefined,
+    external: "https://github.com/prathamagrawal",
+    tech: ["Python", "R", "Plotly", "Dash", "Flask"],
+    desc: "Dataset of 270,000+ rows covering 124 years of Olympic athlete history. Web app built with Dash and Plotly to surface trends and outliers across the full timeline.",
+  },
+  {
+    title: "Image Colorisation",
+    github: "https://github.com/prathamagrawal/Image-colorisation",
+    external: undefined,
+    tech: ["Python", "Flask", "Jupyter"],
+    desc: "Deep neural network tool for colorizing and enhancing grayscale images.",
+  },
+  {
+    title: "LeetCode Solutions",
+    github: "https://github.com/prathamagrawal/Leetcode",
+    external: "https://www.prathamagrawal.me/leetcode",
+    tech: ["C++", "Python", "Java"],
+    desc: "Curated solutions repository covering a range of algorithmic and data structure problems.",
+  },
+];
+
 export default function FeaturedProjects() {
   const [expanded, setExpanded] = useState(false);
   const visibleProjects = expanded ? PROJECTS : PROJECTS.slice(0, INITIAL_PROJECT_COUNT);
@@ -263,6 +294,87 @@ export default function FeaturedProjects() {
         })}
       </div>
 
+      {/* ── Additional Engineering Projects (Shown when expanded) ── */}
+      {expanded && (
+        <div style={{ marginTop: "3.5rem" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              marginBottom: "1.5rem",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "11px",
+                color: "var(--text-muted)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+              }}
+            >
+              system / additional-work
+            </span>
+            <div
+              style={{
+                flex: 1,
+                height: "1px",
+                backgroundColor: "var(--border)",
+              }}
+              aria-hidden="true"
+            />
+          </div>
+
+          <div className="card-grid-2">
+            {OTHER_PROJECTS.map((p, i) => (
+              <ScrollReveal key={p.title} delay={i * 70} style={{ height: "100%" }}>
+                <div className="item-card" style={{ height: "100%" }}>
+                  {/* Header: title + icon links */}
+                  <div className="item-card-header">
+                    <h3 className="item-card-title">{p.title}</h3>
+                    <div className="item-card-icons">
+                      {p.github && (
+                        <a
+                          href={p.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${p.title} on GitHub`}
+                          className="item-card-icon"
+                        >
+                          <GithubIcon />
+                        </a>
+                      )}
+                      {p.external && (
+                        <a
+                          href={p.external}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${p.title} — external link`}
+                          className="item-card-icon"
+                        >
+                          <ExternalIcon />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="item-card-desc">{p.desc}</p>
+
+                  {/* Tech tags */}
+                  <div className="item-card-tags">
+                    {p.tech.map((t) => (
+                      <span key={t} className="tag">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* ── Expand / Collapse Toggle ── */}
       <div style={{ display: "flex", justifyContent: "center", marginTop: "2.5rem" }}>
         <button
@@ -274,7 +386,7 @@ export default function FeaturedProjects() {
           <span>
             {expanded
               ? "Show fewer projects ↑"
-              : `Show all featured projects (${PROJECTS.length - INITIAL_PROJECT_COUNT} more) ↓`}
+              : `Show all projects (${PROJECTS.length - INITIAL_PROJECT_COUNT + OTHER_PROJECTS.length} more) ↓`}
           </span>
         </button>
       </div>

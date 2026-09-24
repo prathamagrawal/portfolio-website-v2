@@ -7,7 +7,6 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Certifications from "@/components/Certifications";
 import FeaturedProjects from "@/components/FeaturedProjects";
-import OtherProjects from "@/components/OtherProjects";
 import Publications from "@/components/Publications";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -40,7 +39,6 @@ function PortfolioContent() {
             <Experience />
             <Certifications />
             <FeaturedProjects />
-            <OtherProjects />
             <Publications />
             <Contact />
           </>
