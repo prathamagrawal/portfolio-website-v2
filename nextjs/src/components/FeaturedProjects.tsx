@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SectionLabel from "./SectionLabel";
+import ScrollReveal from "./ScrollReveal";
 
 const GithubIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -119,126 +120,128 @@ export default function FeaturedProjects() {
           const isReverse = index % 2 !== 0;
 
           return (
-            <article key={project.title} className="project-card">
-              <div className={`project-card-grid${isReverse ? " reverse" : ""}`}>
+            <ScrollReveal key={project.title} delay={index * 60}>
+              <article className="project-card">
+                <div className={`project-card-grid${isReverse ? " reverse" : ""}`}>
 
-                {/* ── Blueprint Window Frame (Visual Canvas) ── */}
-                <div className="project-card-visual">
-                  <a
-                    href={project.external || project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-window-frame"
-                    aria-label={`${project.title} — view project`}
-                  >
-                    {/* Window Title Bar */}
-                    <div className="project-window-header">
-                      <div className="project-window-dots" aria-hidden="true">
-                        <span className="project-window-dot red" />
-                        <span className="project-window-dot yellow" />
-                        <span className="project-window-dot green" />
-                      </div>
-                      <span className="project-window-title">
-                        {project.windowTitle}
-                      </span>
-                      <span className="project-window-badge">
-                        {project.windowBadge}
-                      </span>
-                    </div>
-
-                    {/* Canvas Area with Image */}
-                    <div className="project-window-canvas">
-                      <Image
-                        src={project.cover}
-                        alt={`${project.title} architectural overview`}
-                        fill
-                        style={{
-                          objectFit: project.objectFit,
-                          objectPosition: "center",
-                          padding: project.objectFit === "contain" ? "16px" : "0",
-                        }}
-                        sizes="(max-width: 900px) 100vw, 500px"
-                      />
-                    </div>
-                  </a>
-                </div>
-
-                {/* ── Project Intelligence Specs ── */}
-                <div className="project-card-info">
-                  <div>
-                    {/* Category Eyebrow */}
-                    <span className="project-category-tag">
-                      {project.category}
-                    </span>
-
-                    {/* Title */}
-                    <h3 style={{ margin: 0, padding: 0 }}>
-                      <a
-                        href={project.external || project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-card-title"
-                      >
-                        {project.title}
-                      </a>
-                    </h3>
-
-                    {/* Impact Telemetry Metrics Strip */}
-                    <div className="project-metric-chips" aria-label="Key project metrics">
-                      {project.metrics.map((m) => (
-                        <div key={m.label} className="project-metric-chip">
-                          <span className="project-metric-chip-val">{m.val}</span>
-                          <span className="project-metric-chip-lbl">· {m.label}</span>
+                  {/* ── Blueprint Window Frame (Visual Canvas) ── */}
+                  <div className="project-card-visual">
+                    <a
+                      href={project.external || project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-window-frame"
+                      aria-label={`${project.title} — view project`}
+                    >
+                      {/* Window Title Bar */}
+                      <div className="project-window-header">
+                        <div className="project-window-dots" aria-hidden="true">
+                          <span className="project-window-dot red" />
+                          <span className="project-window-dot yellow" />
+                          <span className="project-window-dot green" />
                         </div>
-                      ))}
-                    </div>
+                        <span className="project-window-title">
+                          {project.windowTitle}
+                        </span>
+                        <span className="project-window-badge">
+                          {project.windowBadge}
+                        </span>
+                      </div>
 
-                    {/* Architectural Description */}
-                    <p className="project-card-desc">
-                      {project.description}
-                    </p>
+                      {/* Canvas Area with Image */}
+                      <div className="project-window-canvas">
+                        <Image
+                          src={project.cover}
+                          alt={`${project.title} architectural overview`}
+                          fill
+                          style={{
+                            objectFit: project.objectFit,
+                            objectPosition: "center",
+                            padding: project.objectFit === "contain" ? "16px" : "0",
+                          }}
+                          sizes="(max-width: 900px) 100vw, 500px"
+                        />
+                      </div>
+                    </a>
                   </div>
 
-                  {/* Tech Stack & Action Buttons */}
-                  <div>
-                    <div className="project-card-tech">
-                      {project.tech.map((t) => (
-                        <span key={t} className="tag">
-                          {t}
-                        </span>
-                      ))}
+                  {/* ── Project Intelligence Specs ── */}
+                  <div className="project-card-info">
+                    <div>
+                      {/* Category Eyebrow */}
+                      <span className="project-category-tag">
+                        {project.category}
+                      </span>
+
+                      {/* Title */}
+                      <h3 style={{ margin: 0, padding: 0 }}>
+                        <a
+                          href={project.external || project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-card-title"
+                        >
+                          {project.title}
+                        </a>
+                      </h3>
+
+                      {/* Impact Telemetry Metrics Strip */}
+                      <div className="project-metric-chips" aria-label="Key project metrics">
+                        {project.metrics.map((m) => (
+                          <div key={m.label} className="project-metric-chip">
+                            <span className="project-metric-chip-val">{m.val}</span>
+                            <span className="project-metric-chip-lbl">· {m.label}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Architectural Description */}
+                      <p className="project-card-desc">
+                        {project.description}
+                      </p>
                     </div>
 
-                    <div className="project-action-group">
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-action-btn"
-                        >
-                          <GithubIcon />
-                          <span>Source</span>
-                        </a>
-                      )}
-                      {project.external && (
-                        <a
-                          href={project.external}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-action-btn primary"
-                        >
-                          <ExternalIcon />
-                          <span>{project.externalLabel}</span>
-                        </a>
-                      )}
+                    {/* Tech Stack & Action Buttons */}
+                    <div>
+                      <div className="project-card-tech">
+                        {project.tech.map((t) => (
+                          <span key={t} className="tag">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="project-action-group">
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-action-btn"
+                          >
+                            <GithubIcon />
+                            <span>Source</span>
+                          </a>
+                        )}
+                        {project.external && (
+                          <a
+                            href={project.external}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-action-btn primary"
+                          >
+                            <ExternalIcon />
+                            <span>{project.externalLabel}</span>
+                          </a>
+                        )}
+                      </div>
                     </div>
+
                   </div>
 
                 </div>
-
-              </div>
-            </article>
+              </article>
+            </ScrollReveal>
           );
         })}
       </div>

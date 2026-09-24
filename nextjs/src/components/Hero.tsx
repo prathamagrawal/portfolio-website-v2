@@ -57,6 +57,16 @@ function useTypewriterSequence(
 export default function Hero() {
   const prefersReducedMotion = usePrefersReducedMotion();
   const { typed, visible, cursor } = useTypewriterSequence(METRICS, prefersReducedMotion);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const getTransition = (delay: number, duration = 500) => {
+    if (prefersReducedMotion) return "none";
+    return `opacity ${duration}ms ease ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`;
+  };
 
   return (
     <section style={{ minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "84px", paddingBottom: "72px" }}>
@@ -66,7 +76,14 @@ export default function Hero() {
         <div className="hero-left" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
 
           {/* Status badge — bold, high-contrast systems chip */}
-          <div className="hero-status-pill">
+          <div
+            className="hero-status-pill"
+            style={{
+              opacity: prefersReducedMotion || mounted ? 1 : 0,
+              transform: prefersReducedMotion || mounted ? "translateY(0)" : "translateY(-8px)",
+              transition: getTransition(0, 400),
+            }}
+          >
             <div className="hero-status-name-group">
               <span className="hero-pulse-dot" aria-hidden="true" />
               <span className="hero-status-name">Pratham Agrawal</span>
@@ -76,19 +93,40 @@ export default function Hero() {
           </div>
 
           {/* Clean, balanced headline */}
-          <h1 className="hero-headline">
+          <h1
+            className="hero-headline"
+            style={{
+              opacity: prefersReducedMotion || mounted ? 1 : 0,
+              transform: prefersReducedMotion || mounted ? "translateY(0)" : "translateY(14px)",
+              transition: getTransition(100, 550),
+            }}
+          >
             Backend &amp; Data<br />
             <span className="hero-headline-highlight">Infrastructure</span> Engineer.
           </h1>
 
           {/* Lead description */}
-          <p className="hero-lead-text">
+          <p
+            className="hero-lead-text"
+            style={{
+              opacity: prefersReducedMotion || mounted ? 1 : 0,
+              transform: prefersReducedMotion || mounted ? "translateY(0)" : "translateY(10px)",
+              transition: getTransition(200, 450),
+            }}
+          >
             Building high-throughput data pipelines, distributed storage topologies, and
             LLM-powered automation.{" "}
           </p>
 
           {/* Interactive CTAs */}
-          <div className="hero-cta-wrap">
+          <div
+            className="hero-cta-wrap"
+            style={{
+              opacity: prefersReducedMotion || mounted ? 1 : 0,
+              transform: prefersReducedMotion || mounted ? "translateY(0)" : "translateY(10px)",
+              transition: getTransition(300, 450),
+            }}
+          >
             <a href="#projects" className="hero-btn-primary">
               <span>View my work</span>
               <span aria-hidden="true" style={{ fontSize: "14px", transform: "translateY(1px)" }}>↓</span>
@@ -108,7 +146,14 @@ export default function Hero() {
 
         {/* ── Right Column: Telemetry / Metrics Console ── */}
         <div className="hero-right" style={{ width: "100%" }}>
-          <div className="hero-console-box">
+          <div
+            className="hero-console-box"
+            style={{
+              opacity: prefersReducedMotion || mounted ? 1 : 0,
+              transform: prefersReducedMotion || mounted ? "translateY(0) scale(1)" : "translateY(14px) scale(0.99)",
+              transition: getTransition(150, 600),
+            }}
+          >
 
             {/* Console Header */}
             <div className="hero-console-header">

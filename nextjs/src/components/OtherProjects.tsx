@@ -1,4 +1,5 @@
 import SectionLabel from "./SectionLabel";
+import ScrollReveal from "./ScrollReveal";
 
 /* SVG icons as constants so they don't repeat in JSX */
 const GithubIcon = () => (
@@ -55,48 +56,50 @@ export default function OtherProjects() {
        * Defined in globals.css (not Tailwind arbitrary values).
        */}
       <div className="card-grid-2">
-        {PROJECTS.map((p) => (
-          <div key={p.title} className="item-card">
+        {PROJECTS.map((p, i) => (
+          <ScrollReveal key={p.title} delay={i * 80} style={{ height: "100%" }}>
+            <div className="item-card" style={{ height: "100%" }}>
 
-            {/* Header: title + icon links */}
-            <div className="item-card-header">
-              <h3 className="item-card-title">{p.title}</h3>
-              <div className="item-card-icons">
-                {p.github && (
-                  <a
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${p.title} on GitHub`}
-                    className="item-card-icon"
-                  >
-                    <GithubIcon />
-                  </a>
-                )}
-                {p.external && (
-                  <a
-                    href={p.external}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${p.title} — external link`}
-                    className="item-card-icon"
-                  >
-                    <ExternalIcon />
-                  </a>
-                )}
+              {/* Header: title + icon links */}
+              <div className="item-card-header">
+                <h3 className="item-card-title">{p.title}</h3>
+                <div className="item-card-icons">
+                  {p.github && (
+                    <a
+                      href={p.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${p.title} on GitHub`}
+                      className="item-card-icon"
+                    >
+                      <GithubIcon />
+                    </a>
+                  )}
+                  {p.external && (
+                    <a
+                      href={p.external}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${p.title} — external link`}
+                      className="item-card-icon"
+                    >
+                      <ExternalIcon />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Description — flex-1 so all cards stretch to same height in row */}
+              <p className="item-card-desc">{p.desc}</p>
+
+              {/* Tech tags pinned to bottom */}
+              <div className="item-card-tags">
+                {p.tech.map((t) => (
+                  <span key={t} className="tag">{t}</span>
+                ))}
               </div>
             </div>
-
-            {/* Description — flex-1 so all cards stretch to same height in row */}
-            <p className="item-card-desc">{p.desc}</p>
-
-            {/* Tech tags pinned to bottom */}
-            <div className="item-card-tags">
-              {p.tech.map((t) => (
-                <span key={t} className="tag">{t}</span>
-              ))}
-            </div>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
     </SectionLabel>

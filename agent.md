@@ -20,7 +20,19 @@
   - No ALL-CAPS eyebrow labels.
   - No standard "01 / 02 / 03" numbered sections.
   - No generic "Hi, my name is" greetings.
-  - No fade-up-on-scroll animation libraries (NO Framer Motion, NO GSAP, NO Anime.js). Motion is strictly confined to the hero typewriter/gauge sequence.
+  - No bloated animation libraries (NO Framer Motion, NO GSAP, NO Anime.js). All animations are native, GPU-accelerated CSS + IntersectionObserver.
+
+---
+
+## 2.1 Motion Design & Animation System (Anti-README Polish)
+
+To eliminate the flat "static README file getting loaded" impression without becoming tacky:
+- **`useInView.ts` + `ScrollReveal.tsx`**: Lightweight native `IntersectionObserver` hook (`triggerOnce: true`, respects `prefers-reduced-motion`). Elements glide up softly with cubic-bezier easing (`0.16, 1, 0.3, 1`) and staggered delays.
+- **Section Headers (`SectionLabel.tsx`)**: Header title slides up softly while the structural hairline rule draws across smoothly from left to right (`scaleX(0) -> scaleX(1)`).
+- **Hero Mount Orchestration**: Staggered initial entrance for status badge, headline, lead copy, CTAs, and telemetry console box.
+- **Living Timeline Nodes (`Experience.tsx`)**: The active present-day node features a living, breathing pulse halo.
+- **Tactile Card Interactions**: Cards (`.item-card`, `.expedition-card`, `.project-card`) feature responsive hover lift (`translateY(-2px)`) and subtle illuminated border-glow.
+- **Engineered Background Depth (`globals.css`)**: Ultra-subtle 32px technical dot-matrix grid and ambient top radial glow, breaking the flat void while preserving clean focus.
 
 ---
 
@@ -74,10 +86,11 @@ nextjs/
 │   │   ├── Nav.tsx             // Fixed top navbar with centered ModeToggle and adaptive links
 │   │   ├── ModeToggle.tsx      // Centered segmented switch [ ● systems | • offline ]
 │   │   ├── SocialSidebar.tsx   // Stationary social rail (desktop) / dock (mobile)
-│   │   ├── SectionLabel.tsx    // Semantic h2 with accent ## marker and gradient rule line
+│   │   ├── SectionLabel.tsx    // Semantic h2 with accent ## marker and drawing rule line
+│   │   ├── ScrollReveal.tsx    // GPU-accelerated lightweight viewport entrance wrapper
 │   │   ├── Hero.tsx            // Technical hero + typewriter telemetry HUD
 │   │   ├── About.tsx           // Systems engineering bio + 500x500 headshot
-│   │   ├── Experience.tsx      // Vertical timeline with metrics highlights
+│   │   ├── Experience.tsx      // Vertical timeline with metrics highlights & breathing node
 │   │   ├── FeaturedProjects.tsx// Dossier cards with blueprint window frames & impact chips
 │   │   ├── OtherProjects.tsx   // 2x2 grid (.card-grid-2) with no orphan cells
 │   │   ├── Publications.tsx    // 3-col grid (.card-grid-3) with venues and year badges
@@ -91,6 +104,7 @@ nextjs/
 │   │       ├── TravelSection.tsx  // Expedition cards with GPS coordinates & altitudes
 │   │       └── PersonalContact.tsx// Coffee, route exchanges & informal meetups
 │   └── hooks/
+│       ├── useInView.ts        // Lightweight IntersectionObserver hook
 │       └── usePrefersReducedMotion.ts
 └── public/
     ├── photo.jpg

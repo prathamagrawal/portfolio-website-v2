@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import SectionLabel from "./SectionLabel";
+import ScrollReveal from "./ScrollReveal";
 
 const JOBS: {
   company: string;
@@ -129,65 +130,67 @@ export default function Experience() {
       <div className="timeline-wrapper">
         <div className="timeline-rail" aria-hidden="true" />
 
-        {JOBS.map((job) => (
-          <div key={job.company} className="timeline-entry">
-            {/* Node dot on the rail */}
-            <span
-              className={job.current ? "timeline-dot" : "timeline-dot-dim"}
-              aria-hidden="true"
-            />
+        {JOBS.map((job, idx) => (
+          <ScrollReveal key={job.company} delay={idx * 60}>
+            <div className="timeline-entry">
+              {/* Node dot on the rail */}
+              <span
+                className={job.current ? "timeline-dot" : "timeline-dot-dim"}
+                aria-hidden="true"
+              />
 
-            {/* ── Header row ── */}
-            <div className="timeline-header">
-              <a
-                href={job.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="timeline-company"
-              >
-                {job.company}
-                {job.current && (
-                  <span
-                    style={{
-                      display: "inline-block",
-                      marginLeft: "8px",
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "10px",
-                      color: "var(--accent)",
-                      background: "var(--accent-dim)",
-                      padding: "1px 6px",
-                      borderRadius: "2px",
-                      verticalAlign: "middle",
-                      fontWeight: 400,
-                      letterSpacing: "0.06em",
-                    }}
-                  >
-                    current
-                  </span>
-                )}
-              </a>
+              {/* ── Header row ── */}
+              <div className="timeline-header">
+                <a
+                  href={job.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="timeline-company"
+                >
+                  {job.company}
+                  {job.current && (
+                    <span
+                      style={{
+                        display: "inline-block",
+                        marginLeft: "8px",
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "10px",
+                        color: "var(--accent)",
+                        background: "var(--accent-dim)",
+                        padding: "1px 6px",
+                        borderRadius: "2px",
+                        verticalAlign: "middle",
+                        fontWeight: 400,
+                        letterSpacing: "0.06em",
+                      }}
+                    >
+                      current
+                    </span>
+                  )}
+                </a>
 
-              <div className="timeline-meta">
-                <span>{job.title}</span>
-                <span className="timeline-meta-sep">·</span>
-                <span>{job.range}</span>
-                <span className="timeline-meta-sep">·</span>
-                <span>{job.location}</span>
+                <div className="timeline-meta">
+                  <span>{job.title}</span>
+                  <span className="timeline-meta-sep">·</span>
+                  <span>{job.range}</span>
+                  <span className="timeline-meta-sep">·</span>
+                  <span>{job.location}</span>
+                </div>
               </div>
-            </div>
 
-            {/* ── Bullet list ── */}
-            <ul className="timeline-bullets">
-              {job.bullets.map((b, i) => (
-                <li key={i} className="timeline-bullet">
-                  {/* span wrapper is critical: makes the ReactNode a single flex item.
-                      Without it, JSX fragments expand into multiple DOM text/element
-                      nodes each becoming a separate flex column. */}
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+              {/* ── Bullet list ── */}
+              <ul className="timeline-bullets">
+                {job.bullets.map((b, i) => (
+                  <li key={i} className="timeline-bullet">
+                    {/* span wrapper is critical: makes the ReactNode a single flex item.
+                        Without it, JSX fragments expand into multiple DOM text/element
+                        nodes each becoming a separate flex column. */}
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </ScrollReveal>
         ))}
       </div>
     </SectionLabel>

@@ -1,4 +1,5 @@
 import SectionLabel from "./SectionLabel";
+import ScrollReveal from "./ScrollReveal";
 
 const ExternalIcon = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -40,59 +41,61 @@ export default function Publications() {
        * 3 items → 1 clean row on desktop, no orphan cells.
        */}
       <div className="card-grid-3">
-        {PUBS.map((p) => (
-          <div key={p.title} className="item-card">
+        {PUBS.map((p, i) => (
+          <ScrollReveal key={p.title} delay={i * 80} style={{ height: "100%" }}>
+            <div className="item-card" style={{ height: "100%" }}>
 
-            {/* Header: year + venue + external link */}
-            <div className="item-card-header">
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <span className="pub-year">{p.year}</span>
-                <span style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
-                  color: "var(--text-muted)",
-                  opacity: 0.5,
-                  userSelect: "none",
-                }}>·</span>
-                <span style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
-                  color: "var(--text-muted)",
-                  letterSpacing: "0.04em",
-                }}>
-                  {p.venue}
-                </span>
+              {/* Header: year + venue + external link */}
+              <div className="item-card-header">
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span className="pub-year">{p.year}</span>
+                  <span style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "10px",
+                    color: "var(--text-muted)",
+                    opacity: 0.5,
+                    userSelect: "none",
+                  }}>·</span>
+                  <span style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "10px",
+                    color: "var(--text-muted)",
+                    letterSpacing: "0.04em",
+                  }}>
+                    {p.venue}
+                  </span>
+                </div>
+                {p.external && (
+                  <a
+                    href={p.external}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Read: ${p.title}`}
+                    className="item-card-icon"
+                  >
+                    <ExternalIcon />
+                  </a>
+                )}
               </div>
-              {p.external && (
+
+              {/* Title */}
+              {p.external ? (
                 <a
                   href={p.external}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Read: ${p.title}`}
-                  className="item-card-icon"
+                  className="pub-title"
                 >
-                  <ExternalIcon />
+                  {p.title}
                 </a>
+              ) : (
+                <span className="pub-title">{p.title}</span>
               )}
+
+              {/* Description */}
+              <p className="item-card-desc">{p.desc}</p>
             </div>
-
-            {/* Title */}
-            {p.external ? (
-              <a
-                href={p.external}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pub-title"
-              >
-                {p.title}
-              </a>
-            ) : (
-              <span className="pub-title">{p.title}</span>
-            )}
-
-            {/* Description */}
-            <p className="item-card-desc">{p.desc}</p>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
     </SectionLabel>
