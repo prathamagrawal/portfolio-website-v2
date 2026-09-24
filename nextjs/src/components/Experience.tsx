@@ -1,6 +1,10 @@
-import { ReactNode } from "react";
+"use client";
+
+import { useState, ReactNode } from "react";
 import SectionLabel from "./SectionLabel";
 import ScrollReveal from "./ScrollReveal";
+
+const INITIAL_JOB_COUNT = 2;
 
 const JOBS: {
   company: string;
@@ -119,6 +123,18 @@ const JOBS: {
 ];
 
 export default function Experience() {
+  const [expanded, setExpanded] = useState(false);
+  const visibleJobs = expanded ? JOBS : JOBS.slice(0, INITIAL_JOB_COUNT);
+
+  const handleToggle = () => {
+    if (expanded) {
+      setExpanded(false);
+      document.getElementById("jobs")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      setExpanded(true);
+    }
+  };
+
   return (
     <SectionLabel label="experience" id="jobs">
       {/*
@@ -130,7 +146,7 @@ export default function Experience() {
       <div className="timeline-wrapper">
         <div className="timeline-rail" aria-hidden="true" />
 
-        {JOBS.map((job, idx) => (
+        {visibleJobs.map((job, idx) => (
           <ScrollReveal key={job.company} delay={idx * 60}>
             <div className="timeline-entry">
               {/* Node dot on the rail */}
@@ -192,6 +208,22 @@ export default function Experience() {
             </div>
           </ScrollReveal>
         ))}
+
+        {/* ── Expand / Collapse Toggle ── */}
+        <div style={{ marginTop: "1rem" }}>
+          <button
+            type="button"
+            onClick={handleToggle}
+            className="expand-toggle-btn"
+            aria-expanded={expanded}
+          >
+            <span>
+              {expanded
+                ? "Show less experience ↑"
+                : `Show earlier roles (${JOBS.length - INITIAL_JOB_COUNT} more) ↓`}
+            </span>
+          </button>
+        </div>
       </div>
     </SectionLabel>
   );

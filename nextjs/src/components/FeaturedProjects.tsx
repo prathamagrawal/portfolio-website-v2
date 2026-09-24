@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import SectionLabel from "./SectionLabel";
 import ScrollReveal from "./ScrollReveal";
+
+const INITIAL_PROJECT_COUNT = 2;
 
 const GithubIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -113,10 +118,22 @@ const PROJECTS = [
 ];
 
 export default function FeaturedProjects() {
+  const [expanded, setExpanded] = useState(false);
+  const visibleProjects = expanded ? PROJECTS : PROJECTS.slice(0, INITIAL_PROJECT_COUNT);
+
+  const handleToggle = () => {
+    if (expanded) {
+      setExpanded(false);
+      document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      setExpanded(true);
+    }
+  };
+
   return (
     <SectionLabel label="featured projects" id="projects">
       <div>
-        {PROJECTS.map((project, index) => {
+        {visibleProjects.map((project, index) => {
           const isReverse = index % 2 !== 0;
 
           return (
@@ -244,6 +261,22 @@ export default function FeaturedProjects() {
             </ScrollReveal>
           );
         })}
+      </div>
+
+      {/* ── Expand / Collapse Toggle ── */}
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "2.5rem" }}>
+        <button
+          type="button"
+          onClick={handleToggle}
+          className="expand-toggle-btn"
+          aria-expanded={expanded}
+        >
+          <span>
+            {expanded
+              ? "Show fewer projects ↑"
+              : `Show all featured projects (${PROJECTS.length - INITIAL_PROJECT_COUNT} more) ↓`}
+          </span>
+        </button>
       </div>
     </SectionLabel>
   );

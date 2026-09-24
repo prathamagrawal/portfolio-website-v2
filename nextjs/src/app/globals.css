@@ -1940,3 +1940,41 @@ a.pub-title:hover { color: var(--accent); }
   color: var(--accent);
 }
 
+/* ─── Expand / Collapse Toggle Button ────────────────────────────── */
+.expand-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.expand-toggle-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(56, 139, 253, 0.18);
+}
+
+[data-mode="personal"] .expand-toggle-btn {
+  background-color: var(--surface);
+  border-color: var(--border);
+  color: var(--text-secondary);
+  box-shadow: 0 2px 8px rgba(70, 50, 30, 0.06);
+}
+
+[data-mode="personal"] .expand-toggle-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 4px 16px rgba(147, 75, 32, 0.18);
+}
+
