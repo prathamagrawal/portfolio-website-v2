@@ -6,11 +6,10 @@ import ModeToggle from "./ModeToggle";
 import { usePortfolioMode } from "@/context/ModeContext";
 
 const TECH_LINKS = [
-  { name: "About",          href: "#about" },
-  { name: "Experience",     href: "#jobs" },
-  { name: "Certifications", href: "#certifications" },
-  { name: "Work",           href: "#projects" },
-  { name: "Contact",        href: "#contact" },
+  { name: "About",      href: "#about" },
+  { name: "Experience", href: "#jobs" },
+  { name: "Work",       href: "#projects" },
+  { name: "Contact",    href: "#contact" },
 ];
 
 const PERSONAL_LINKS = [
@@ -97,7 +96,7 @@ export default function Nav() {
           </div>
 
           {/* Desktop links */}
-          <div className="hidden md:flex" style={{ alignItems: "center", gap: "1.75rem" }}>
+          <div className="hidden md:flex" style={{ alignItems: "center", gap: "1.25rem" }}>
             {navLinks.map((l) => (
               <Link
                 key={l.name}
