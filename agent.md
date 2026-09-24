@@ -92,7 +92,7 @@ nextjs/
 │   │   ├── About.tsx           // Systems engineering bio + 500x500 headshot + cert badge
 │   │   ├── Experience.tsx      // Vertical timeline with metrics highlights & breathing node
 │   │   ├── Certifications.tsx  // AWS Certified Data Engineer dossier with Credly verification
-│   │   ├── FeaturedProjects.tsx// Unified projects showcase: flagship dossiers + expandable grid for other work
+│   │   ├── FeaturedProjects.tsx// Unified projects showcase: flagship dossiers (KubeSherlock, Mirror-DB, etc.) + expandable grid for other work
 │   │   ├── Publications.tsx    // 3-col grid (.card-grid-3) with venues and year badges
 │   │   ├── Contact.tsx         // "Let's talk systems" + direct email + telemetry spec panel
 │   │   ├── Footer.tsx          // Dynamic copyright year + stack attribution
@@ -110,6 +110,7 @@ nextjs/
     ├── photo.jpg
     ├── resume.pdf
     ├── aws-certified-data-engineer.png
+    ├── kubesherlock-architecture.png
     ├── mirror-db-architecture.jpeg
     ├── loghive.png
     ├── Clusterbase.png

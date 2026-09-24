@@ -23,8 +23,27 @@ const ExternalIcon = () => (
 
 const PROJECTS = [
   {
+    title: "KubeSherlock",
+    category: "SYS.01 // AI KUBERNETES INCIDENT INVESTIGATION",
+    cover: "/kubesherlock-architecture.png",
+    windowTitle: "kubesherlock / react-agent-architecture.spec",
+    windowBadge: "MCP AGENT",
+    objectFit: "contain" as const,
+    github: "https://github.com/prathamagrawal/KubeSherlock",
+    external: "https://hub.docker.com/r/prathamagrawal/kubesherlock",
+    externalLabel: "Docker Hub",
+    metrics: [
+      { val: "26 tools", label: "K8s MCP suite" },
+      { val: "sub-30s", label: "RCA generation" },
+      { val: "v1.0.0", label: "Helm chart" },
+    ],
+    tech: ["Python", "Kubernetes", "Model Context Protocol", "Claude / GPT", "Helm", "Prometheus"],
+    description:
+      "Autonomous AI Kubernetes incident investigation agent running a ReAct reasoning loop across 26 diagnostic MCP tools. Automatically detects pod failures (CrashLoopBackOff, OOMKilled), correlates cluster events and container logs, and publishes severity-classified root-cause analysis with automated email notifications and Prometheus metrics.",
+  },
+  {
     title: "Mirror-DB",
-    category: "SYS.01 // DISTRIBUTED STORAGE & HA",
+    category: "SYS.02 // DISTRIBUTED STORAGE & HA",
     cover: "/mirror-db-architecture.jpeg",
     windowTitle: "mirror-db / architecture-topology.spec",
     windowBadge: "DIAGRAM",
@@ -44,7 +63,7 @@ const PROJECTS = [
   },
   {
     title: "LogHive",
-    category: "SYS.02 // DISTRIBUTED LOGGING & ARCHIVAL",
+    category: "SYS.03 // DISTRIBUTED LOGGING & ARCHIVAL",
     cover: "/loghive.png",
     windowTitle: "loghive / backpressure-pipeline.py",
     windowBadge: "PIPELINE",
@@ -63,7 +82,7 @@ const PROJECTS = [
   },
   {
     title: "Clusterbase",
-    category: "SYS.03 // REAL-TIME DATA CLUSTERING",
+    category: "SYS.04 // REAL-TIME DATA CLUSTERING",
     cover: "/Clusterbase.png",
     windowTitle: "clusterbase / telemetry-console.ui",
     windowBadge: "CONSOLE UI",
@@ -81,7 +100,7 @@ const PROJECTS = [
   },
   {
     title: "Crypto2csv",
-    category: "SYS.04 // STREAM ETL & CLI PIPELINE",
+    category: "SYS.05 // STREAM ETL & CLI PIPELINE",
     cover: "/Crypto2csv.png",
     windowTitle: "crypto2csv / cli-stream.sh",
     windowBadge: "CLI TOOL",
@@ -99,7 +118,7 @@ const PROJECTS = [
   },
   {
     title: "Sportlight",
-    category: "SYS.05 // ML HIGHLIGHT EXTRACTION",
+    category: "SYS.06 // ML HIGHLIGHT EXTRACTION",
     cover: "/demo.png",
     windowTitle: "sportlight / video-pipeline.ml",
     windowBadge: "ML MODEL",
