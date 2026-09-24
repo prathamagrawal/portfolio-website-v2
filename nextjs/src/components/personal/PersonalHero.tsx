@@ -55,7 +55,7 @@ export default function PersonalHero() {
             }}
           >
             The version of me<br />
-            <span className="hero-headline-highlight" style={{ background: "linear-gradient(120deg, #9B5226 0%, #D97736 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            <span className="hero-headline-highlight" style={{ background: "linear-gradient(120deg, #2D6A4F 0%, #52B788 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               that doesn&apos;t ship code.
             </span>
           </h1>
@@ -111,7 +111,7 @@ export default function PersonalHero() {
             {/* Console Header */}
             <div className="hero-console-header">
               <div className="hero-console-title">
-                <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "#9B5226", boxShadow: "0 0 6px #9B5226" }} aria-hidden="true" />
+                <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "#2D6A4F", boxShadow: "0 0 6px #2D6A4F" }} aria-hidden="true" />
                 <span>telemetry / physical-stats</span>
               </div>
               <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "var(--text-muted)", letterSpacing: "0.05em" }}>
@@ -138,7 +138,7 @@ export default function PersonalHero() {
                       className="hero-metric-bar-fill"
                       style={{
                         width: `${m.pct}%`,
-                        background: "linear-gradient(90deg, #9B5226 0%, #D97736 100%)",
+                      background: "linear-gradient(90deg, #2D6A4F 0%, #52B788 100%)",
                       }}
                     />
                   </div>
