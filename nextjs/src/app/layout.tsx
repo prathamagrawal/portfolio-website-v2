@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${plexMono.variable}`}>
       <body className="bg-bg text-primary font-sans antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );
