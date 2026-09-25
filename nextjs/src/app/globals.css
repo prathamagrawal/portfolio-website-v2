@@ -81,6 +81,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* iOS Safari: background-attachment:fixed causes repaint on every scroll tick */
+@media (max-width: 767px) {
+  body { background-attachment: scroll; }
+}
+
 /* ─── Selection ──────────────────────────────────────────────────── */
 ::selection {
   background-color: rgba(0, 180, 216, 0.25);
@@ -2796,4 +2801,133 @@ html, body {
     padding-left: 16px;
     padding-right: 16px;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Task 1: Animated Body Gradient Shift ───────────────────────── */
+@keyframes gradient-drift {
+  0%   { background-position: 0% 0%,   0 0; }
+  25%  { background-position: 60% 20%,  0 0; }
+  50%  { background-position: 100% 60%, 0 0; }
+  75%  { background-position: 40% 100%, 0 0; }
+  100% { background-position: 0% 0%,   0 0; }
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 180, 216, 0.08), transparent),
+    radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 200% 200%, 32px 32px;
+  background-attachment: fixed;
+  animation: gradient-drift 18s ease-in-out infinite;
+}
+
+[data-mode="personal"] body,
+.theme-personal body {
+  background-image:
+    radial-gradient(ellipse 80% 45% at 50% -15%, rgba(45, 106, 79, 0.07), transparent),
+    radial-gradient(rgba(45, 106, 79, 0.04) 1px, transparent 1px);
+  background-size: 200% 200%, 32px 32px;
+  background-attachment: fixed;
+  animation: gradient-drift 18s ease-in-out infinite;
+}
+
+/* On mobile: drop background-attachment:fixed (causes iOS Safari repaints)
+   and skip the gradient drift to save battery                              */
+@media (max-width: 767px) {
+  body,
+  [data-mode="personal"] body,
+  .theme-personal body {
+    background-attachment: scroll;
+    animation: none;
+    background-size: 100% 100%, 32px 32px;
+  }
+}
+
+/* ─── Task 2: Hero Headline Shimmer ──────────────────────────────── */
+@keyframes shimmer-slide {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.hero-headline-highlight {
+  background: linear-gradient(
+    120deg,
+    #00B4D8 0%,
+    #90E0EF 35%,
+    #ffffff 50%,
+    #90E0EF 65%,
+    #00B4D8 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-slide 4s linear infinite;
+}
+
+/* ─── Task 3: Pulsing Ring on Current-Job Timeline Dot ───────────── */
+@keyframes timeline-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(0, 180, 216, 0.70), 0 0 0 3px var(--bg); }
+  60%  { box-shadow: 0 0 0 7px rgba(0, 180, 216, 0.00), 0 0 0 3px var(--bg); }
+  100% { box-shadow: 0 0 0 0   rgba(0, 180, 216, 0.00), 0 0 0 3px var(--bg); }
+}
+
+.timeline-dot {
+  animation: timeline-pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* ─── Task 6: Section-title underline draw-in ────────────────────── */
+/* The existing section-header-line already does scaleX 0→1 via SectionLabel.
+   We enhance it with a glowing gradient + slight fade for extra polish.      */
+.section-header-line {
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--border) 30%,
+    var(--border-muted) 65%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition:
+    transform 850ms cubic-bezier(0.16, 1, 0.3, 1) 80ms,
+    opacity   400ms ease 80ms;
+}
+
+/* When inView the JS sets scaleX(1) — we also want opacity 1 */
+/* We use a data attr set by SectionLabel, or just piggyback: the inline
+   style sets transform → we watch via [style*="scaleX(1)"] selector.        */
+.section-header-wrap[data-in-view="true"] .section-header-line {
+  opacity: 1;
+}
+
+/* Hero pulse-dot in status pill — continuous glow pulse */
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 6px  #3fb950, 0 0 0px  #3fb950; }
+  50%       { box-shadow: 0 0 14px #3fb950, 0 0 4px #3fb950; }
+}
+.hero-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ─── Task 5: Skill tag staggered entrance ───────────────────────── */
+@keyframes tag-pop {
+  from { opacity: 0; transform: translateY(6px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+.tag-animated {
+  opacity: 0;
+  animation: tag-pop 320ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Cursor Spotlight ───────────────────────────────────────────── */
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  transition: opacity 600ms ease;
 }

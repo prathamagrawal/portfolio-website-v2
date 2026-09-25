@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import SectionLabel from "./SectionLabel";
 import ScrollReveal from "./ScrollReveal";
+import { useInView } from "@/hooks/useInView";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const SKILL_GROUPS = [
   {
@@ -24,6 +28,86 @@ const SKILL_GROUPS = [
     skills: ["FastAPI", "Anthropic API", "Next.js"],
   },
 ];
+
+/** Skill groups with staggered tag entrance animation on scroll-into-view */
+function SkillsBlock() {
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const { ref, inView } = useInView({ threshold: 0.1 });
+
+  let flatIdx = 0;
+
+  return (
+    <div ref={ref} style={{ marginTop: "2.5rem" }}>
+      {SKILL_GROUPS.map((group) => (
+        <div key={group.label}>
+          <p className="skills-group-label">{group.label}</p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "4px" }}>
+            {group.skills.map((s) => {
+              const delay = (flatIdx++) * 35;
+              return (
+                <span
+                  key={s}
+                  className={`tag${!prefersReducedMotion && inView ? " tag-animated" : ""}`}
+                  style={
+                    !prefersReducedMotion && inView
+                      ? { animationDelay: `${delay}ms` }
+                      : undefined
+                  }
+                >
+                  {s}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+
+      {/* Verified Cloud Certification Callout */}
+      <div style={{ marginTop: "1.75rem", paddingTop: "1.25rem", borderTop: "1px solid var(--border-muted)" }}>
+        <p className="skills-group-label" style={{ marginBottom: "8px" }}>verified certification</p>
+        <a
+          href="#certifications"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            padding: "6px 12px",
+            background: "var(--surface)",
+            border: "1px solid var(--border)",
+            borderRadius: "4px",
+            textDecoration: "none",
+            transition: "all var(--transition-fast)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "var(--accent)";
+            e.currentTarget.style.transform = "translateY(-1px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "var(--border)";
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+        >
+          <span
+            style={{
+              width: "7px",
+              height: "7px",
+              borderRadius: "50%",
+              backgroundColor: "#3fb950",
+              boxShadow: "0 0 8px #3fb950",
+            }}
+            aria-hidden="true"
+          />
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", color: "var(--text-primary)", fontWeight: 500 }}>
+            AWS Certified Data Engineer – Associate
+          </span>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "var(--metric)" }}>
+            (DEA-C01) ↓
+          </span>
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export default function About() {
   return (
@@ -61,63 +145,9 @@ export default function About() {
               </p>
             </div>
 
-            {/* Skills — grouped by domain */}
-            <div style={{ marginTop: "2.5rem" }}>
-              {SKILL_GROUPS.map((group) => (
-                <div key={group.label}>
-                  <p className="skills-group-label">{group.label}</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "4px" }}>
-                    {group.skills.map((s) => (
-                      <span key={s} className="tag">{s}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+            {/* Skills — grouped by domain, with staggered entrance */}
+            <SkillsBlock />
 
-              {/* Verified Cloud Certification Callout */}
-              <div style={{ marginTop: "1.75rem", paddingTop: "1.25rem", borderTop: "1px solid var(--border-muted)" }}>
-                <p className="skills-group-label" style={{ marginBottom: "8px" }}>verified certification</p>
-                <a
-                  href="#certifications"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    padding: "6px 12px",
-                    background: "var(--surface)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "4px",
-                    textDecoration: "none",
-                    transition: "all var(--transition-fast)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "var(--accent)";
-                    e.currentTarget.style.transform = "translateY(-1px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "var(--border)";
-                    e.currentTarget.style.transform = "translateY(0)";
-                  }}
-                >
-                  <span
-                    style={{
-                      width: "7px",
-                      height: "7px",
-                      borderRadius: "50%",
-                      backgroundColor: "#3fb950",
-                      boxShadow: "0 0 8px #3fb950",
-                    }}
-                    aria-hidden="true"
-                  />
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "11.5px", color: "var(--text-primary)", fontWeight: 500 }}>
-                    AWS Certified Data Engineer – Associate
-                  </span>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "var(--metric)" }}>
-                    (DEA-C01) ↓
-                  </span>
-                </a>
-              </div>
-            </div>
           </div>
         </ScrollReveal>
 

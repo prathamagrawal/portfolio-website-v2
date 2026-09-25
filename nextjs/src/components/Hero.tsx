@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import HeroParticles from "@/components/HeroParticles";
 
 const METRICS = [
   { value: "sub-60s",   label: "failover time (Mirror-DB)",   pct: 88  },
@@ -75,8 +76,9 @@ export default function Hero() {
   };
 
   return (
-    <section style={{ minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "84px", paddingBottom: "72px" }}>
-      <div className="hero-grid">
+    <section style={{ minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "84px", paddingBottom: "72px", position: "relative", overflow: "hidden" }}>
+      <HeroParticles />
+      <div className="hero-grid" style={{ position: "relative", zIndex: 1 }}>
 
         {/* ── Left Column: Headline & Position ── */}
         <div className="hero-left" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>

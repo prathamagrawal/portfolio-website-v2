@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import SectionLabel from "./SectionLabel";
 import ScrollReveal from "./ScrollReveal";
+import TiltCard from "./TiltCard";
 
 const INITIAL_PROJECT_COUNT = 2;
 
@@ -188,6 +189,7 @@ export default function FeaturedProjects() {
 
           return (
             <ScrollReveal key={project.title} delay={index * 60}>
+              <TiltCard>
               <article className="project-card">
                 <div className={`project-card-grid${isReverse ? " reverse" : ""}`}>
 
@@ -308,6 +310,7 @@ export default function FeaturedProjects() {
 
                 </div>
               </article>
+              </TiltCard>
             </ScrollReveal>
           );
         })}

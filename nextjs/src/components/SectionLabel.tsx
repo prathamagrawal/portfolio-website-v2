@@ -16,7 +16,11 @@ export default function SectionLabel({ label, id, children }: SectionLabelProps)
 
   return (
     <section id={id} className="section-block">
-      <div ref={ref} className="section-header-wrap">
+      <div
+        ref={ref}
+        className="section-header-wrap"
+        data-in-view={prefersReducedMotion || inView ? "true" : "false"}
+      >
         <h2
           className="section-title"
           style={{
@@ -34,7 +38,6 @@ export default function SectionLabel({ label, id, children }: SectionLabelProps)
           style={{
             transform: prefersReducedMotion || inView ? "scaleX(1)" : "scaleX(0)",
             transformOrigin: "left",
-            transition: prefersReducedMotion ? "none" : "transform 750ms cubic-bezier(0.16, 1, 0.3, 1) 120ms",
           }}
         />
       </div>

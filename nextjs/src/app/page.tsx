@@ -20,6 +20,7 @@ import SportsSection from "@/components/personal/SportsSection";
 import PersonalContact from "@/components/personal/PersonalContact";
 import ModeTransitionLoader from "@/components/ModeTransitionLoader";
 import PageLoader from "@/components/PageLoader";
+import CursorGlow from "@/components/CursorGlow";
 
 function PortfolioContent() {
   const { mode } = usePortfolioMode();
@@ -27,6 +28,7 @@ function PortfolioContent() {
   return (
     <>
       <PageLoader />
+      <CursorGlow />
       <Nav />
       {/*
        * SocialSidebar is stationary all over the page
